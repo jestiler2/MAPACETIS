@@ -1,0 +1,590 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2022-03-14T18:27:41Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/30127241",
+        "building": "train_station",
+        "building:levels": "1",
+        "internet_access:ssid": "Sistema de transporte colectivo metro",
+        "line": "7, 12",
+        "name": "Mixcoac",
+        "network": "Metro",
+        "nohousenumber": "yes",
+        "public_transport": "station",
+        "railway": "station",
+        "roof:shape": "skillion",
+        "train": "yes",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -99.1881523,
+              19.3764506
+            ],
+            [
+              -99.1881649,
+              19.3763578
+            ],
+            [
+              -99.1878791,
+              19.376319
+            ],
+            [
+              -99.1878738,
+              19.3763664
+            ],
+            [
+              -99.1878665,
+              19.3764118
+            ],
+            [
+              -99.1881523,
+              19.3764506
+            ]
+          ]
+        ]
+      },
+      "id": "way/30127241"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/457304451",
+        "building": "yes",
+        "name": "Metro Iztapalapa",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -99.0931126,
+              19.3578114
+            ],
+            [
+              -99.0932925,
+              19.3577935
+            ],
+            [
+              -99.0934114,
+              19.3577574
+            ],
+            [
+              -99.0934706,
+              19.357742
+            ],
+            [
+              -99.0934419,
+              19.3576044
+            ],
+            [
+              -99.0930978,
+              19.3576698
+            ],
+            [
+              -99.0931126,
+              19.3578114
+            ]
+          ]
+        ]
+      },
+      "id": "way/457304451"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/911446961",
+        "building": "yes",
+        "name": "Estación \"Observatorio\"",
+        "network": "Tren Interurbano México - Toluca",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -99.2022172,
+              19.398199
+            ],
+            [
+              -99.2004225,
+              19.3986171
+            ],
+            [
+              -99.200517,
+              19.398781
+            ],
+            [
+              -99.201229,
+              19.398609
+            ],
+            [
+              -99.2015392,
+              19.3985898
+            ],
+            [
+              -99.2025351,
+              19.3982867
+            ],
+            [
+              -99.2026491,
+              19.3982029
+            ],
+            [
+              -99.2026778,
+              19.3981154
+            ],
+            [
+              -99.2026605,
+              19.3980114
+            ],
+            [
+              -99.2022172,
+              19.398199
+            ]
+          ]
+        ]
+      },
+      "id": "way/911446961"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/911713248",
+        "building": "yes",
+        "name": "Estación del tren de Chapultepec",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -99.2012753,
+              19.4108814
+            ],
+            [
+              -99.2012381,
+              19.4112019
+            ],
+            [
+              -99.2017389,
+              19.4112586
+            ],
+            [
+              -99.201815,
+              19.4109732
+            ],
+            [
+              -99.2013425,
+              19.4108798
+            ],
+            [
+              -99.2012753,
+              19.4108814
+            ]
+          ]
+        ]
+      },
+      "id": "way/911713248"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/308554084",
+        "description": "Last public station on line",
+        "name": "Barranca del Muerto",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2885482",
+        "wikipedia": "es:Barranca del Muerto (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1892663,
+          19.3615625
+        ]
+      },
+      "id": "node/308554084"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/308561120",
+        "name": "Polanco",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q6824672",
+        "wikipedia": "es:Polanco (estación, Metro de la Ciudad de México)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.190915,
+          19.43353
+        ]
+      },
+      "id": "node/308561120"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/308564178",
+        "name": "Camarones",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q6824514",
+        "wikipedia": "es:Camarones (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1900262,
+          19.4791036
+        ]
+      },
+      "id": "node/308564178"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/308564186",
+        "name": "Aquiles Serdán",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q6824477",
+        "wikipedia": "es:Aquiles Serdán (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1952293,
+          19.4905558
+        ]
+      },
+      "id": "node/308564186"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/313547018",
+        "name": "Hangares",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q6824582",
+        "wikipedia": "es:Hangares (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.0879737,
+          19.4242423
+        ]
+      },
+      "id": "node/313547018"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/351115062",
+        "name": "La Villa-Basílica",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2836136",
+        "wikipedia": "es:La Villa-Basílica (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1184576,
+          19.4816347
+        ]
+      },
+      "id": "node/351115062"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/555081970",
+        "name": "San Juan de Letrán",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q5691609",
+        "wikipedia": "es:San Juan de Letrán (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1413291,
+          19.4312856
+        ]
+      },
+      "id": "node/555081970"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/681460966",
+        "name": "Lagunilla",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q6824610",
+        "wikipedia": "es:Lagunilla (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1312288,
+          19.4432579
+        ]
+      },
+      "id": "node/681460966"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/681460971",
+        "name": "Tepito",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q5402969",
+        "wikipedia": "es:Tepito (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1241019,
+          19.4428214
+        ]
+      },
+      "id": "node/681460971"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2266164095",
+        "name": "Patriotismo",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q6824665",
+        "wikipedia": "es:Patriotismo (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.178752,
+          19.4060319
+        ]
+      },
+      "id": "node/2266164095"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3649087197",
+        "alt_name": "Taxqueña",
+        "name": "Tasqueña",
+        "network": "STC Metro",
+        "opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+        "operator": "Sistema de Transporte Colectivo",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q3357320",
+        "wikipedia": "es:Tasqueña (estación del metro)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1396585,
+          19.3437579
+        ]
+      },
+      "id": "node/3649087197"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4688809545",
+        "name": "Sevilla",
+        "network": "STC Metro",
+        "public_transport": "station",
+        "railway": "station",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q3356943",
+        "wikipedia": "es:Sevilla (estación del Metro de Ciudad de México)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1708104,
+          19.4219182
+        ]
+      },
+      "id": "node/4688809545"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5049810418",
+        "name": "Tlalnepantla",
+        "network": "FC Suburbano de México",
+        "operator": "FC Suburbano de México",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1841337,
+          19.5357392
+        ]
+      },
+      "id": "node/5049810418"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5335697471",
+        "name": "Juárez",
+        "network": "STC Metro",
+        "public_transport": "station",
+        "railway": "station",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q6824601",
+        "wikipedia": "es:Juárez (estación)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1477097,
+          19.4331046
+        ]
+      },
+      "id": "node/5335697471"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6949058012",
+        "addr:city": "Ciudad de México",
+        "name": "Buenavista",
+        "network": "FC Suburbano de México",
+        "operator": "FC Suburbano de México",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes",
+        "wikidata": "Q4985492",
+        "wikipedia": "es:Estación Buenavista"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1520549,
+          19.4479592
+        ]
+      },
+      "id": "node/6949058012"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8843484355",
+        "name": "Mixcoac",
+        "public_transport": "station",
+        "railway": "station",
+        "train": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.18634,
+          19.3761377
+        ]
+      },
+      "id": "node/8843484355"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Aquí agregamos JQUERY (JS no es JQUERY con JQUERY te da acceso a las funciones que empiezan con $)-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- Aquí le decimos que va a haber acentos y ñ -->
+        <meta charset="UTF-8">
+
+        <!-- Estos son los estilos de leaflet (colores tamaños y p...) -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+       <link rel="stylesheet" type="text/css" href="mapa.css"> <!-- indicamos que es css y relacionamos el archivo -->
+
+        <!-- Para que podamos ver las herramientas de dibujo (iconos de la derecha)-->
+        <link rel="stylesheet" type="text/css" href="leaflet\draw.css"> <!-- indicamos que es css y relacionamos el archivo -->
+
+     
+        <title>Mapa Mundo</title> 
+       
+    </head>
+
+    <body>
+
+        <h1>Mapa inteligentesx</h1>
+
+        <!-- Creamos un botón principal 001 -->
+        <input id="boton" type="boton" value="Capas biciruta" onClick="this.disabled=true">
+        <input id="urlTxt" type="text">
+
+        <!-- aqui creo el enlace para abrir en una nueva pestaña el archivo con los datos geojson -->
+       <a href="newfile2.json" target="_blank" class="boton">Ver archivo</a>
+        <!-- aqui pongo otro enlace para descargar el mismo archivo -->
+        <a href="newfile2.json" download="export.Geojson" class="boton" >Descargar archivo</a>
+   
+
+        <select name="" id="menubox"  onchange="javascript:drawItemSelect()" >
+             
+            
+            </select>
+        <!-- Esta es la div donde se vaa ver el mapa -->
+        <div id="map" style="width:100%;"></div>
+
+<!-- para agregar el box del lista -->
+
+
+
+
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" crossorigin=""></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js" crossorigin=""></script>
+        <script src="leaflet.ajax.min.js"></script> 
+        <script src="mapa.js"> </script> <!-- igual referenciamos -->
+
+		<!-- Overlay Loading -->
+		<link rel="stylesheet" href="js/overlay/jquery.loadingModal.css">
+		<script src="js/overlay/jquery.loadingModal.js"></script>        
+
+        <script>
+
+   			// Loading message init...
+			$('body').loadingModal({
+				animation: 'chasingDots',
+				text: '<b>Cargando</b>',
+				eText: ['Espere un momento por favor...', 'Seguimos trabajando, un momento por favor...', 'Disculpe, ésto está tardando un poco más de lo normal...<br>Un momento por favor...', '¡Algo ha salido muy mal!<br>Disculpe, por favor recargue la página y vuelva a intentarlo...' ]
+			});
+
+            // Autostart function set...
+			window.onload = (function(){$('body').loadingModal('hide');});
+
+        </script>
+
+     <!-- <script src="mapaCOPIAJS.js"></script> -->
+
+    </body>
+</html>

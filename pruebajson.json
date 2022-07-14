@@ -1,0 +1,2460 @@
+{
+	"type": "FeatureCollection",
+	"features": [{
+		"type": "Feature",
+		"properties": {
+			"name": "San Antonio Abad",
+			"public_transport": "stop_position",
+			"subway": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1345224, 19.4160366]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Salto del Agua",
+			"network": "STC Metro",
+			"opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+			"operator": "Sistema de Transporte Colectivo",
+			"public_transport": "station",
+			"railway": "station",
+			"station": "subway",
+			"subway": "yes",
+			"wikidata": "Q740243",
+			"wikipedia": "es:Salto del Agua (estaci\u00f3n)"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1420543, 19.4267538]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Obrera",
+			"network": "STC Metro",
+			"opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+			"operator": "Sistema de Transporte Colectivo",
+			"public_transport": "station",
+			"railway": "station",
+			"station": "subway",
+			"subway": "yes",
+			"wikidata": "Q6824651",
+			"wikipedia": "es:Obrera (estaci\u00f3n)"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1440487, 19.4132002]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Doctores",
+			"network": "STC Metro",
+			"opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+			"operator": "Sistema de Transporte Colectivo",
+			"public_transport": "station",
+			"railway": "station",
+			"station": "subway",
+			"subway": "yes",
+			"wikidata": "Q2837042",
+			"wikipedia": "es:Doctores (estaci\u00f3n)"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.14322, 19.4214424]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pino Su\u00e1rez",
+			"public_transport": "stop_position",
+			"subway": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1329481, 19.4259131]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Isabel la Cat\u00f3lica",
+			"network": "STC Metro",
+			"public_transport": "station",
+			"railway": "station",
+			"subway": "yes",
+			"wikidata": "Q3356870",
+			"wikipedia": "es:Isabel la Cat\u00f3lica (estaci\u00f3n)"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1378401, 19.4263577]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Isabel la Cat\u00f3lica",
+			"public_transport": "stop_position",
+			"subway": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1378834, 19.426354]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Salto del Agua",
+			"network": "STC Metro",
+			"opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+			"operator": "Sistema de Transporte Colectivo",
+			"public_transport": "stop_position",
+			"railway": "stop",
+			"station": "subway",
+			"subway": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1428117, 19.4268586]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "15",
+			"addr:postcode": "06720",
+			"addr:street": "Calle Doctor Olvera",
+			"designation": "Museum",
+			"name": "Museo del Juguete Antiguo M\u00e9xico",
+			"opening_hours": "Mo-Fr 09:00-18:00; Sa 09:00-16:00; Su 10:00-16:00",
+			"phone": "55882100",
+			"source": "Dr. Olvera #15 Col. Doctores",
+			"tourism": "museum",
+			"website": "https:\/\/www.museodeljuguete.mx\/"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.144101, 19.4153733]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "school",
+			"name": "Escuela de Cultura Popular M\u00e1rtires del 68",
+			"website": "http:\/\/ecpm68.com\/"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1365234, 19.4166633]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.138263, 19.4171737]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1385366, 19.4174848]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "122",
+			"addr:street": "Juan Lucas Lassaga",
+			"amenity": "theatre",
+			"name": "Centro Cultural Carreterra 45"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.136873, 19.4168651]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "24",
+			"addr:street": "San Jer\u00f3nimo",
+			"amenity": "restaurant",
+			"cuisine": "mexican",
+			"designation": "Cocina mexicana contempor\u00e1nea",
+			"name": "Restaurante Escuela Z\u00e9firo",
+			"old_name": "Celda de la Marquesa de Selva Nevada",
+			"website": "www.zefiro.com.mx"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1380783, 19.4273279]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bar",
+			"name": "Balagan"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1362527, 19.4271085]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "7",
+			"addr:street": "Zapotecos",
+			"amenity": "cafe",
+			"name": "El Rinc\u00f3n Zapatista"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1385395, 19.4220039]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pino Su\u00e1rez",
+			"public_transport": "stop_position",
+			"subway": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.132913, 19.4246695]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pasteler\u00eda D. Henaro",
+			"shop": "bakery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1415687, 19.4126441]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "restaurant",
+			"cuisine": "seafood",
+			"name": "Mariscos La Perla de la Obrera"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.143473, 19.4132905]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "124",
+			"addr:street": "Lorenzo Boturini",
+			"name": "La Bici Obrera",
+			"shop": "bicycle"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1373365, 19.4183896]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_repair_station",
+			"fee": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1373314, 19.4270326]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Tortilleria La Obrera Premium",
+			"phone": "+01 55 5578 8080",
+			"shop": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1434583, 19.4152274]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Salto del Agua",
+			"network": "STC Metro",
+			"opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+			"operator": "Sistema de Transporte Colectivo",
+			"public_transport": "stop_position",
+			"railway": "stop",
+			"station": "subway",
+			"subway": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1419862, 19.4272197]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "M\u00e9xico",
+			"addr:housenumber": "19",
+			"addr:street": "Arcos de Bel\u00e9n",
+			"amenity": "register_office",
+			"name": "Oficina Central del Registro Civil",
+			"opening_hours": "08:00-18:00"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1450777, 19.4264641]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "cafe",
+			"cuisine": "coffee_shop",
+			"internet_access": "yes",
+			"name": "Jarocho"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.14012, 19.4198343]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "Ciudad de M\u00e9xico",
+			"addr:street": "Fco. J. Clavijero",
+			"amenity": "restaurant",
+			"cuisine": "tacos_de_carnitas",
+			"name": "El Abanico",
+			"opening_hours": "10:00-18:00"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1302941, 19.4149405]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Alubike",
+			"shop": "bicycle"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1348774, 19.4129578]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Las Cruces"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1299383, 19.4262151]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bank",
+			"atm": "yes",
+			"brand": "BBVA Bancomer",
+			"brand:wikidata": "Q2876794",
+			"brand:wikipedia": "en:BBVA M\u00e9xico",
+			"name": "BBVA Bancomer"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1346453, 19.4142826]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bank",
+			"atm": "yes",
+			"brand": "Banamex",
+			"brand:wikidata": "Q749474",
+			"brand:wikipedia": "en:Grupo Financiero Banamex",
+			"name": "Banamex",
+			"official_name": "Grupo Financiero Banamex"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.134758, 19.4133567]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"internet_access": "wlan",
+			"name": "H\u00f4tel Fabiola",
+			"tourism": "hotel"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1381207, 19.4187951]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "291",
+			"addr:postcode": "06800",
+			"addr:street": "Bol\u00edvar",
+			"amenity": "bar",
+			"name": "Barba Azul"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1412026, 19.4158962]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy",
+			"brand": "Farmacias Similares",
+			"brand:wikidata": "Q62564610",
+			"healthcare": "pharmacy",
+			"name": "Farmacias Similares"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.143393, 19.4246433]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "doctors",
+			"healthcare": "doctor",
+			"name": "M\u00e9dico"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1433223, 19.4246373]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Plaza C\u00e1ndido Mayo",
+			"tourism": "attraction"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1438003, 19.4180472]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"brand": "Oxxo",
+			"brand:wikidata": "Q1342538",
+			"brand:wikipedia": "es:Oxxo",
+			"name": "Oxxo",
+			"shop": "convenience"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1428831, 19.421875]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Vinos y Liquores",
+			"shop": "alcohol"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1406962, 19.4184979]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy",
+			"brand": "Farmacias Similares",
+			"brand:wikidata": "Q62564610",
+			"dispensing": "yes",
+			"healthcare": "pharmacy",
+			"name": "Farmacias Similares"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1429314, 19.4216697]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"brand": "Oxxo",
+			"brand:wikidata": "Q1342538",
+			"brand:wikipedia": "es:Oxxo",
+			"name": "Oxxo",
+			"shop": "convenience"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1434642, 19.4181431]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy",
+			"name": "Farmacias Farmapronto"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1384614, 19.4182508]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "doctors"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1428465, 19.4216004]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Hotel Catalina",
+			"tourism": "hotel"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1438694, 19.4237282]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Parada combi",
+			"public_transport": "platform"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1332613, 19.4234903]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "hospital",
+			"name": "Instituto Oftalmologia",
+			"name:es": "Instituto Oftalmologia"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1418319, 19.4225708]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy",
+			"brand": "Farmacia Guadalajara",
+			"brand:wikidata": "Q5435609",
+			"brand:wikipedia": "en:Farmacias Guadalajara",
+			"dispensing": "yes",
+			"healthcare": "pharmacy",
+			"name": "Farmacia Guadalajara",
+			"name:es": "Farmacia Guadalajara"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1428251, 19.4220164]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"artwork_type": "statue",
+			"historic": "memorial",
+			"memorial:type": "statue",
+			"name": "Estatua de Sor Juana Ines de la Cruz"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1359902, 19.42695]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "parking",
+			"name": "Plaza Vizcainas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1416874, 19.427547]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "CDMX Cuauht\u00e9moc.",
+			"addr:housenumber": "156",
+			"addr:postcode": "06080",
+			"addr:street": "Calle Sim\u00f3n Bol\u00edvar",
+			"amenity": "restaurant",
+			"name": "Toks Bolivar",
+			"website": "https:\/\/www.toks.com.mx\/",
+			"wheelchair": "yes",
+			"wheelchair:description": "Restaurante cuenta con estacionamiento,Rampas para acceso, Ba\u00f1os accesibles para silla de ruedas."
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1396628, 19.4236068]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_parking",
+			"bicycle_parking": "staples",
+			"capacity": "4"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1341544, 19.4234367]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_parking",
+			"bicycle_parking": "staples",
+			"capacity": "4"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1340975, 19.4232661]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Doctores",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1430603, 19.4213796]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Doctores",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1433603, 19.4214163]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Doctores",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1430273, 19.4215977]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Doctores",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1433325, 19.4216258]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Obrera",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1439225, 19.4130496]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Obrera",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1442152, 19.413081]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Obrera",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1438557, 19.41327]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Obrera",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1441798, 19.4133237]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Librer\u00eda Jerusal\u00e9n",
+			"name:es": "Librer\u00eda Jerusal\u00e9n",
+			"shop": "books"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.139177, 19.42744]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "42",
+			"addr:street": "Alfredo Chavero",
+			"amenity": "bar",
+			"internet_access": "wlan",
+			"name": "La Quebrada",
+			"name:es": "La Quebrada"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1410752, 19.4176015]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:street": "Alfredo Chavero",
+			"amenity": "restaurant",
+			"cuisine": "japanese",
+			"name": "Nigiri Sushi",
+			"name:es": "Nigiri Sushi"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.140999, 19.4175978]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "empacar",
+			"name:es": "empacar",
+			"shop": "ticket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1376213, 19.4247202]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:street": "Jos\u00e9 Mar\u00eda Izazaga",
+			"brand": "Oxxo",
+			"brand:wikidata": "Q1342538",
+			"brand:wikipedia": "es:Oxxo",
+			"name": "Oxxo",
+			"name:es": "Oxxo",
+			"shop": "supermarket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1374304, 19.4261621]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"alt_name": "Troleb\u00fas Ruta A",
+			"highway": "bus_stop",
+			"name": "Dr. R\u00edo de la Loza",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Corredor Cero Emisiones - Troleb\u00fas",
+			"public_transport": "platform",
+			"ref": "CCE1\/A"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1425712, 19.4249522]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "theatre",
+			"name": "Teatro San Mill\u00e1n",
+			"name:es": "Teatro San Mill\u00e1n",
+			"phone": "015555663233"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1385756, 19.4209144]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_rental",
+			"capacity": "25",
+			"name": "Ecobici #106 San Jer\u00f3nimo - Jos\u00e9 Mar\u00eda Pino Su\u00e1rez",
+			"network": "Ecobici",
+			"operator": "Gobierno de la Ciudad de M\u00e9xico",
+			"ref": "106"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1335859, 19.4264963]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_rental",
+			"capacity": "23",
+			"name": "Ecobici #105 San Jer\u00f3nimo - 5 De Febrero",
+			"network": "Ecobici",
+			"operator": "Gobierno de la Ciudad de M\u00e9xico",
+			"ref": "105"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1350685, 19.4267397]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_rental",
+			"capacity": "15",
+			"name": "Ecobici #104 San Jer\u00f3nimo - Isabel La Cat\u00f3lica",
+			"network": "Ecobici",
+			"operator": "Gobierno de la Ciudad de M\u00e9xico",
+			"ref": "104"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.137063, 19.4270584]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_rental",
+			"capacity": "29",
+			"name": "Ecobici #109 Nezahualcoyotl - Isabel La Cat\u00f3lica",
+			"network": "Ecobici",
+			"operator": "Gobierno de la Ciudad de M\u00e9xico",
+			"ref": "109"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1373017, 19.4252018]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_rental",
+			"brand": "Ecobici",
+			"brand:wikidata": "Q5817067",
+			"brand:wikipedia": "es:Ecobici (Ciudad de M\u00e9xico)",
+			"capacity": "36",
+			"name": "Ecobici #110 Dr. Valenzuela - Dr. R\u00edo De La Loza",
+			"network": "Ecobici",
+			"operator": "Gobierno de la Ciudad de M\u00e9xico",
+			"ref": "110"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.143381, 19.4251474]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bicycle_rental",
+			"capacity": "28",
+			"name": "Ecobici #448 Dr. Andrade - Arcos de Bel\u00e9n",
+			"network": "Ecobici",
+			"operator": "Gobierno de la Ciudad de M\u00e9xico",
+			"ref": "448"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1444713, 19.4266765]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "Ciudad de M\u00e9xico",
+			"addr:country": "MX",
+			"addr:housenumber": "104",
+			"addr:postcode": "06080",
+			"addr:street": "Bol\u00edvar",
+			"amenity": "bar",
+			"name": "Noi Soto Bar"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1392483, 19.4269037]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Pino Su\u00e1rez",
+			"name:es": "Metrob\u00fas Pino Su\u00e1rez",
+			"network": "Metrob\u00fas",
+			"operator": "Metrob\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1325432, 19.4264277]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pino Su\u00e1rez",
+			"network": "STC Metro",
+			"railway": "subway_entrance",
+			"wheelchair": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1328781, 19.4255843]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pino Su\u00e1rez",
+			"network": "STC Metro",
+			"railway": "subway_entrance",
+			"wheelchair": "no"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1327788, 19.4254755]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pino Su\u00e1rez",
+			"network": "STC Metro",
+			"railway": "subway_entrance",
+			"wheelchair": "no"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.133256, 19.4262193]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pino Su\u00e1rez",
+			"network": "STC Metro",
+			"railway": "subway_entrance",
+			"wheelchair": "no"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1334695, 19.4261764]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Salto del Agua",
+			"network": "STC Metro",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1420713, 19.4271091]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Salto del Agua",
+			"network": "STC Metro",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.141838, 19.4270863]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Salto del Agua",
+			"network": "STC Metro",
+			"railway": "subway_entrance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1418327, 19.4272192]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Jose Mar\u00eda Izazaga",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1420203, 19.4263325]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"bench": "yes",
+			"highway": "bus_stop",
+			"name": "Salto del Agua",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas",
+			"shelter": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.142015, 19.4273924]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Doctores",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.143125, 19.421231]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Dr. Navarro",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1433501, 19.4208991]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Obrera",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1439741, 19.412932]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Manuel Jos\u00e9 Oth\u00f3n",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.143766, 19.414959]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Dr. Aceves",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.143964, 19.41482]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Eje Central",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1434887, 19.4152021]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"highway": "bus_stop",
+			"name": "Eje Central",
+			"network": "Servicio de Transportes El\u00e9ctricos",
+			"operator": "Troleb\u00fas"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.144304, 19.414259]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "261",
+			"addr:postcode": "06800",
+			"addr:street": "Bolivar",
+			"email": "lince.x@hotmail.com",
+			"internet_access": "wlan",
+			"name": "Automotriz ALG",
+			"opening_hours": "Mo-Fr 09:00-19:00; Sa 10:00-15:00",
+			"phone": "55784471",
+			"shop": "car_repair"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1408193, 19.4176701]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pino Su\u00e1rez",
+			"network": "STC Metro",
+			"opening_hours": "Mo-Fr 05:00-24:00; Sa 06:00-24:00; Su 07:00-24:00",
+			"operator": "Sistema de Transporte Colectivo",
+			"public_transport": "station",
+			"railway": "station",
+			"station": "subway",
+			"subway": "yes",
+			"wheelchair": "yes",
+			"wikidata": "Q3357008",
+			"wikipedia": "es:Pino Su\u00e1rez (estaci\u00f3n)"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1330025, 19.4258983]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "San Antonio Abad",
+			"network": "STC Metro",
+			"public_transport": "station",
+			"railway": "station",
+			"subway": "yes",
+			"wheelchair": "no",
+			"wikidata": "Q3356897",
+			"wikipedia": "es:San Antonio Abad (estaci\u00f3n)"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1345491, 19.4160351]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "fountain"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1421638, 19.4267508]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bar"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1444152, 19.4258595]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Hotel \u00danico SA de CV",
+			"tourism": "hotel"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1306949, 19.4244203]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "hospital",
+			"name": "Hospital Nacional Homeopatico"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1355789, 19.4219722]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Distribuidoras Zertuche",
+			"note": "Colchas, sabanas y toallas",
+			"shop": "bathroom_furnishing"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.130866, 19.4272009]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Soluciones Express",
+			"note": "Copias, enmicados, engargolados",
+			"shop": "copyshop"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1299319, 19.4270809]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "restaurant",
+			"name": "Restaurant Sazon Oaxaque\u00f1o"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1331564, 19.4274949]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pepeleria Envolturas",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1323992, 19.4273977]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Grupo Papelero Gutierrez",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.13106, 19.4272258]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Papeleria",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1304205, 19.4271437]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy",
+			"brand": "Farmacias Similares",
+			"brand:wikidata": "Q62564610",
+			"dispensing": "yes",
+			"healthcare": "pharmacy",
+			"name": "Farmacias Similares"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1352218, 19.4275661]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "restaurant",
+			"name": "La Sirenita Mariscos"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1344179, 19.42747]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Tienda De Abarrotes",
+			"shop": "convenience"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1334248, 19.4273525]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pillbox",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1327081, 19.4272656]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "library",
+			"name": "Biblioteca Publica Ruben Dario"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1317724, 19.4271111]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "ice_cream",
+			"name": "Nutrisa"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1339193, 19.4274104]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Karele Zapaterias",
+			"shop": "shoes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1329625, 19.42747]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Papeleria El Cisne",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1318237, 19.4273238]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Leonas Secret",
+			"note": "Ropa intima",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.130878, 19.4270045]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Fonda Hasta La Cocina",
+			"shop": "appliance"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1299975, 19.4270894]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"brand": "Oxxo",
+			"brand:wikidata": "Q1342538",
+			"brand:wikipedia": "es:Oxxo",
+			"name": "Oxxo",
+			"shop": "convenience"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1351241, 19.4275544]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bar",
+			"name": "Plaza 20"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.134309, 19.427457]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bar",
+			"name": "Barra Blanca Pulqueria"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.133279, 19.4275106]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Taller De Optica",
+			"shop": "optician"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1324814, 19.4274082]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Representaciones Lasser",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1311668, 19.4272395]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Marchan Papeleria",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1305667, 19.4271624]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "clinic",
+			"healthcare": "clinic"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.135314, 19.4275771]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "fast_food"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1345164, 19.4274818]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "El Palacio Del Bebe",
+			"note": "Ropa de bebe",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1334538, 19.4273548]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Papelerias",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1325894, 19.4272514]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bar",
+			"name": "La Internacional"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1314485, 19.4272756]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Ava",
+			"note": "Ropa fina para dama",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1336373, 19.4275566]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Lolena Zapaterias",
+			"shop": "shoes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1329716, 19.4272971]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pepeleria Genesis",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1318818, 19.4273313]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Grupo Papelero Zigma",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1309633, 19.4272134]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Price Club",
+			"note": "Pregio de bodegas",
+			"shop": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.130117, 19.4271047]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Mini Bodegas Plaza",
+			"shop": "convenience"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1343581, 19.4274629]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Dise\u00f1os Candrya",
+			"shop": "tailor"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1332511, 19.4273305]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Tallas Extra",
+			"note": "Ropa",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1325713, 19.4274198]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Distribuidora San Felipe",
+			"shop": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1312276, 19.4272473]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Grupo Vivian",
+			"shop": "fabric"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1306376, 19.4271716]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "restaurant",
+			"name": "Tacos El Guero"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1346562, 19.4274985]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "restaurant",
+			"name": "Lupita"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1335083, 19.4273613]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Puestos De Papeleria",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1323866, 19.4272272]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Distribuidora San Felipe",
+			"shop": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1315418, 19.4272876]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Merceria Regina",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.130501, 19.4269596]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Material Did\u00e1ctico Maestro",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1299704, 19.4268963]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Larva",
+			"note": "Ropa",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1330795, 19.42731]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Mercado De Papeleria",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1319628, 19.4273417]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "La Bodega Del Papel",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1301863, 19.4271136]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Arcana Moda",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1333319, 19.4273402]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "school"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1311798, 19.4270405]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Merceria Marbez",
+			"shop": "fabric"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1307194, 19.4269856]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "cafe",
+			"name": "Caf\u00e9 Puebla"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1353701, 19.4275838]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "toilets",
+			"name": "Ba\u00f1os"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1335642, 19.427368]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Copiadoras Del Centro",
+			"shop": "copyshop"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1316335, 19.4272994]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Papeles Omega",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1300953, 19.4269112]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Kefre",
+			"note": "Ropa",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.133065, 19.4274832]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Mayoristas",
+			"shop": "electronics"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1321344, 19.4273637]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Consumibles Copias",
+			"shop": "copyshop"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1302915, 19.4271271]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Mark Taylor Uniforms",
+			"shop": "tailor"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1333946, 19.4273477]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Luany Casual",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1326814, 19.4274339]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Copias",
+			"shop": "copyshop"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1313291, 19.4272603]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Grupo Alni",
+			"note": "Papeleria",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1306596, 19.4269785]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Hilos Perfectos",
+			"shop": "fabric"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.134772, 19.4275123]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Papeleria SEP",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1336374, 19.4273767]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "La Unica De Regina",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1317092, 19.4273091]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "pharmacy",
+			"dispensing": "yes",
+			"healthcare": "pharmacy",
+			"name": "Gom",
+			"note": "Farmacia e instrumentos medicos"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.134991, 19.4275385]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Nina Ferre",
+			"note": "Vestidos",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1342272, 19.4274472]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Treze",
+			"note": "Ropa",
+			"shop": "clothes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1331516, 19.4273186]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bank",
+			"name": "Santander Banco"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1322794, 19.4273823]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Papeleria",
+			"shop": "stationery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1303554, 19.4271353]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "school",
+			"name": "Escuela Primaria M\u00e9xico Libre"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1334234, 19.4275292]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pasaje Capital",
+			"shop": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1337173, 19.4273863]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bar",
+			"name": "La Catedral Del Pulque",
+			"name:es": "La Catedral Del Pulque"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1380083, 19.4184861]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "104",
+			"addr:street": "Fray Servando Teresa de Mier",
+			"description": "M\u00e9dico, psiquiatra, dentista, psic\u00f3logo.",
+			"name": "Ser Humano, A.C.",
+			"office": "association",
+			"opening_hours": "Mo-Fr 09:00-19:00, 09:00-18:00; Sa 09:00-14:00",
+			"website": "www.serhumano.org.mx"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.138095, 19.4243467]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "44bis",
+			"addr:postcode": "06800",
+			"addr:street": "Lucas Alam\u00e1n",
+			"amenity": "bar",
+			"name": "El Botanero"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1404711, 19.4214564]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "254",
+			"addr:street": "Francisco J. Clavijero",
+			"amenity": "restaurant",
+			"name": "Comedor comunitario \"Nuestro Pan\"",
+			"opening_hours": "Mo-Fr 12:00-16:00"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1302665, 19.4157524]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Ehecatl Pyramid",
+			"tourism": "yes",
+			"tourism_1": "attraction"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.13295, 19.425737]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "place_of_worship",
+			"name": "Iglesia Boturini"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1399516, 19.4189365]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:street": "Calle 20 de Noviembre",
+			"name": "Copias 20 de Noviembre",
+			"payment:cash": "yes",
+			"payment:coins": "yes",
+			"shop": "copyshop"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1343543, 19.424358]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Ba\u00f1os Se\u00f1orial",
+			"shop": "bathroom_furnishing"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1370194, 19.4275854]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "cafe",
+			"name": "La Burra Blanca"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1332127, 19.4275021]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "Venustiano Carranza",
+			"addr:housenumber": "61",
+			"addr:postcode": "15900",
+			"addr:street": "Lorenzo Boturini",
+			"amenity": "marketplace",
+			"name": "Comercializadora Vinocors",
+			"phone": "+52 55 5578 5649"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1389806, 19.4181888]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "M\u00e9xico",
+			"addr:housenumber": "61",
+			"addr:postcode": "06800",
+			"addr:street": "Lorenzo Boturini",
+			"contact:diaspora": "rancho_electronico@diasp.org",
+			"contact:email": "ranchoelectronico@riseup.net",
+			"contact:gnusocial": "ranchoelectronico@social.mayfirst.org",
+			"contact:twitter": "@hackrancho",
+			"contact:website": "http:\/\/ranchoelectronico.org\/",
+			"drink:club-mate": "no",
+			"leisure": "hackerspace",
+			"name": "Hackerspace Rancho Electr\u00f3nico",
+			"start_date": "2013-01-01",
+			"website": "https:\/\/ranchoelectronico.org\/",
+			"wheelchair": "no"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1407799, 19.4183425]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"internet_access": "wlan",
+			"name": "Hotel Virreyes Selina",
+			"tourism": "hotel"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1416949, 19.4270737]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Airbnb Maty&Bato",
+			"name:en": "Airbnb Maty&Bato",
+			"tourism": "apartment"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1446867, 19.4194286]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Airbnb Rodrigo",
+			"name:en": "Airbnb Rodrigo",
+			"tourism": "apartment"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1418381, 19.416656]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "restaurant",
+			"internet_access": "wlan",
+			"name": "La Nueva Sevillana"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1446351, 19.4187496]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bank",
+			"brand": "BBVA Bancomer",
+			"brand:wikidata": "Q2876794",
+			"brand:wikipedia": "en:BBVA Bancomer",
+			"name": "BBVA Bancomer",
+			"operator": "BBVA",
+			"operator:wikidata": "Q806189",
+			"operator:wikipedia": "de:Banco Bilbao Vizcaya Argentaria"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.135768, 19.4237563]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"brand": "Oxxo",
+			"brand:wikidata": "Q1342538",
+			"brand:wikipedia": "es:Oxxo",
+			"name": "Oxxo",
+			"shop": "convenience"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1345349, 19.4254628]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Hostal Ciudad de M\u00e9xico",
+			"tourism": "hostel"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1376261, 19.4261792]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "bar",
+			"name": "El Deposito"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1371316, 19.4271658]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"bus": "yes",
+			"highway": "bus_stop",
+			"name": "Fray Servando",
+			"network": "Corredor Cero Emisiones Eje Central",
+			"operator": "Servicio de Transportes El\u00e9ctricos",
+			"public_transport": "platform"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.142511, 19.4244816]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"bus": "yes",
+			"highway": "bus_stop",
+			"name": "Dr. Pascua",
+			"network": "Corredor Cero Emisiones Eje Central",
+			"operator": "Servicio de Transportes El\u00e9ctricos",
+			"public_transport": "platform"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1431703, 19.422465]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"bus": "yes",
+			"highway": "bus_stop",
+			"name": "Dr. Velasco",
+			"network": "Corredor Cero Emisiones Eje Central",
+			"operator": "Servicio de Transportes El\u00e9ctricos",
+			"public_transport": "platform"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1435308, 19.4191176]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"bus": "yes",
+			"highway": "bus_stop",
+			"name": "Alfredo Chavero",
+			"network": "Corredor Cero Emisiones Eje Central",
+			"operator": "Servicio de Transportes El\u00e9ctricos",
+			"public_transport": "platform"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1434908, 19.4174787]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "Ciudad de M\u00e9xico",
+			"addr:housenumber": "131",
+			"addr:postcode": "06020",
+			"addr:street": "Sim\u00f3n Bol\u00edvar",
+			"amenity": "restaurant",
+			"name": "Bahia de Vigo",
+			"opening_hours": "Lu-Do 10:00 a 22:00 h",
+			"phone": "01 55 5709 9823"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1396827, 19.4247575]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:street": "Calle Sim\u00f3n Bol\u00edvar",
+			"amenity": "fuel",
+			"brand": "Pemex",
+			"brand:wikidata": "Q871308",
+			"brand:wikipedia": "en:Pemex",
+			"name": "Pemex"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1392073, 19.4270467]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "61, 2\u00b0 Piso",
+			"addr:street": "Lorenzo Boturini",
+			"description": "Una comunidad de gente proveniente de las artes electr\u00f3nicas, las artes marciales, las radios comunitarias, el cine, las publicaciones, la reparaci\u00f3n de m\u00e1quinas, las ingenier\u00edas y la gesti\u00f3n cultural, la filosof\u00eda, la teor\u00eda cr\u00edtica, cultura Hacker...",
+			"name": "Rancho Electronico",
+			"office": "quango",
+			"website": "https:\/\/ranchoelectronico.org\/"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1407929, 19.4185282]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Escuadr\u00f3n de Rescate y Urgencias M\u00e9dicas",
+			"office": "government",
+			"short_name": "ERUM",
+			"website": "https:\/\/www.ssc.cdmx.gob.mx\/"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.134287, 19.4221693]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Helipuerto Tlaxcoaque",
+			"office": "government",
+			"phone": "5552425100",
+			"website": "https:\/\/www.ssc.cdmx.gob.mx\/"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1351771, 19.4226793]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "fast_food",
+			"name": "Cecina de Yecapixtla"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1339796, 19.4250053]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "La Michoacana",
+			"shop": "confectionery"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1337517, 19.4249553]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:housenumber": "40",
+			"addr:street": "Peatonal San Jer\u00f3nimo",
+			"amenity": "pub",
+			"name": "Hosteria La Bota"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1370692, 19.4271415]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"internet_access": "wlan",
+			"name": "Hotel",
+			"name:es": "Hotel Cozumel",
+			"tourism": "hotel"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.144475, 19.4202346]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Bodega Aurrera Express",
+			"shop": "supermarket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1333919, 19.4243574]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:street": "Calzada San Antonio Abad",
+			"name": "Pecas de Pino Su\u00e1rez",
+			"shop": "supermarket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1336014, 19.4201094]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"brand": "Telcel",
+			"brand:wikidata": "Q3517255",
+			"brand:wikipedia": "en:Telcel",
+			"name": "TelCel",
+			"name:en": "Telcel",
+			"shop": "mobile_phone"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1330325, 19.4267958]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "El supercito",
+			"shop": "ticket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1436926, 19.4232611]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Hern\u00e1ndez",
+			"shop": "ticket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1441661, 19.4207064]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Pollito",
+			"shop": "ticket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1456869, 19.4217115]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "La goma",
+			"shop": "ticket"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1445176, 19.4259945]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:postcode": "06800",
+			"name": "Colonia Obrera",
+			"place": "neighbourhood",
+			"source": "INEGI (CNPV 2015)",
+			"source:name": "INEGI (CNPV 2015)"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1392082, 19.4150728]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"internet_access": "wlan",
+			"name": "Hotel Goya",
+			"opening_hours": "24\/7",
+			"tourism": "hotel"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1364875, 19.4144918]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"addr:city": "Ciudad de M\u00e9xico",
+			"addr:housenumber": "42",
+			"addr:postcode": "06080",
+			"addr:street": "Avenida Fray Servando Teresa de Mier",
+			"amenity": "restaurant",
+			"name": "Pane En V\u00eda Centro",
+			"opening_hours": "Mo-Su 08:00-22:30",
+			"phone": "+52 55 5709 4040",
+			"website": "https:\/\/paneenvia.com\/"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1404058, 19.4247275]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Estacion Xico (destruida)",
+			"public_transport": "station",
+			"railway": "station",
+			"train": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1299782, 19.422716]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"amenity": "fast_food",
+			"brand": "Domino's",
+			"brand:wikidata": "Q839466",
+			"brand:wikipedia": "en:Domino's Pizza",
+			"cuisine": "pizza",
+			"name": "Domino's",
+			"takeaway": "yes"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-99.1357519, 19.424208]
+		}
+	}]
+}

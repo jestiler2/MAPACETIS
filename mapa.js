@@ -46,7 +46,16 @@ map.on('draw:drawstart', function (e) {
   editableLayers.clearLayers();
 }
 );
-
+function style(feature) {
+  return {
+      weight: .5,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.7
+     
+  };
+}
 function drawItemSelect() {
 
   var combo = document.getElementById("menubox");
@@ -62,8 +71,35 @@ function drawItemSelect() {
     { "unidad": selected }).done( // Mandamos los parámwetros..
       // Función que se ejecuta cuando obtenemos la respuesta del web service...
       function (result) {
+
+      //   var geojsonMarkerOptions = {
+      //     // radius: 8,
+      //     fillColor: "#ff7800",
+      //     color: "#000",
+      //     weight: 1,
+      //     opacity: 1,
+      //     fillOpacity: 0.8
+      // };
+      var geoJsonPoint = new L.marker({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+      var greenIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+
+      
         // Leemos el goejson que creamos y lo agregamos al mapa...
-        L.geoJson.ajax("newfile2.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } }).addTo(map);
+        L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } }).addTo(map);
         //aqui se agregan las CAPAAAS
         // Mostramos en la consola la respuesta...
         console.log(result);

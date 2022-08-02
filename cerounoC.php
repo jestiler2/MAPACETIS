@@ -43,10 +43,17 @@ $long2=strtr($long2, "\n", "");
 $overpass = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(node["amenity"="'.$_POST["unidad"].'"]('.$lat1.','.$long1.','.$lat2.','.$long2.');node(w)->.x;);out;';
 // $overpass = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(node["highway"]('.$lat1.','.$long1.','.$lat2.','.$long2.');node["amenity"]('.$lat1.','.$long1.','.$lat2.','.$long2.');node(w)->.x;);out;';
 $overpass2 = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(node["highway"="'.$_POST["unidad"].'"]('.$lat1.','.$long1.','.$lat2.','.$long2.');node(w)->.x;);out;';
+$overpass3 = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(way["highway"="'.$_POST["unidad"].'"]('.$lat1.','.$long1.','.$lat2.','.$long2.');node(w)->.x;);out;';
+
+
+
+// $overpass = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(way["highway"="cycleway"]('.$_POST["Lat1"].','.$_POST["Lon1"].','.$_POST["Lat2"].','.$_POST["Lon2"].');node(w)->.x;);out;';
 
 
 $overpass = preg_replace("/[\r\n|\n|\r]+/", "",$overpass); //elimina los saltos
 $overpass2 = preg_replace("/[\r\n|\n|\r]+/", "",$overpass2); //elimina los saltos
+$overpass3 = preg_replace("/[\r\n|\n|\r]+/", "",$overpass3); //elimina los saltos
+
 
 // echo $overpass."\n";
 // echo $overpass2."\n";
@@ -66,6 +73,14 @@ curl_setopt($ch2, CURLOPT_URL, $overpass2);
 $html2 = curl_exec($ch2);
 // echo $html2;
 
+$ch3 = curl_init();
+curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch3, CURLOPT_URL, $overpass3);
+$html3 = curl_exec($ch3);
+// echo $html2;
+
+
+
 $variablej = json_decode($html);
 
 // echo $variablej->elements; 
@@ -81,6 +96,14 @@ $variablej2 = json_decode($html2);
 // echo json_encode($variablej2->elements); 
 
 $encode2 = $variablej2->elements;
+
+$variablej3 = json_decode($html3);
+
+// echo $variablej2->elements; 
+// // echo "enconde 2\n";
+// echo json_encode($variablej2->elements); 
+
+$encode3 = $variablej3->elements;
 // foreach ($allData as $data) {  // en all data tenemos features
 //    $props = $data->properties;  //vamos a propies -lo de las capas de isaac
 //    if (!empty($props->amenity)) { //dentro la propiedad se hace la consulta si no es vacio
@@ -95,11 +118,15 @@ $encode2 = $variablej2->elements;
 //      }
 //  }
 
-if(!empty($variablej->elements)){ 
+
+if(!empty($variablej->elements)&& $_POST["search"] == 0){ 
    $geojson = Overpass2Geojson::convertNodes($html,false);
 }
-if(!empty($variablej2->elements)){ 
+if(!empty($variablej2->elements)&& $_POST["search"] == 1){ 
    $geojson = Overpass2Geojson::convertNodes($html2,false);
+}
+if(!empty($variablej3->elements) && $_POST["search"] == 2){ 
+   $geojson = Overpass2Geojson::convertWays($html3,false);
 }
 
 // if( strpos($overpass, "(way[")===false){
@@ -130,6 +157,14 @@ if(!empty($variablej2->elements)){
    $arr=array(
       "url"=> 
       $overpass2 
+   );
+
+   echo json_encode($arr); 
+}
+if(!empty($variablej3->elements)){ 
+   $arr=array(
+      "url"=> 
+      $overpass3 
    );
 
    echo json_encode($arr); 

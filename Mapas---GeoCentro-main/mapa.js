@@ -60,7 +60,6 @@ function style(feature) {
   };
 }
 
-//este es la inversa del acto , el requisito es que las capas esten guardadas
 function resetMap () {
   for (let index = 0; index < capMap.length; index++) {
     // map.removeLayer(capMap[index]['data']);
@@ -76,10 +75,10 @@ function resetMap () {
   }
 }
 
-function addComponents () { //este formatea primero el mapa
+function addComponents () {
 
-  resetMap(); //reseteamos
-//esta es la estructura que se crea con boostrap
+  resetMap();
+
   for (let index = 0; index < capMap.length; index++) {
     const e = document.createElement('div');
     var structure =   "<label class='list-group-item d-flex gap-2' onclick=" + '"javascript:seeCapSelect(' + "'" + capMap[index]['name'] + "', " + "'radio" + index + "'" + ')">' +
@@ -94,38 +93,38 @@ function addComponents () { //este formatea primero el mapa
                       "</label>";
     e.innerHTML = structure; 
     document.getElementById("internsData").appendChild(e);
-    capMap[index]['data'].addTo(map);//agregamos al mapa
+    capMap[index]['data'].addTo(map);
   }
 }
 
 function updateComponentes () {
   // Reset componentes:
-  document.getElementById("internsData").innerHTML = ""; //es un div ,es como decirle que lo que teniamos lo borre, solo permite agregar 1
-//eliminamos para que quede en blanco y llamamos update
+  document.getElementById("internsData").innerHTML = "";
+
   // Update componentes:
   addComponents()
 }
 
 function deleteCap (index) {
-  let clear = confirm("¿Seguro que desea eliminarlo del mapa?");//creamos la alerta
+  let clear = confirm("¿Seguro que desea eliminarlo del mapa?");
 
-  if (clear == true) { //si le dimos a borrar
-    resetMap(); //reseteamos 
-    capMap.splice(index, 1);//al arreglo lo borramos, el arreglo dinamico el 1 solo elimina el 1 elemento
-    updateComponentes();//actualizamos los componentes
+  if (clear == true) {
+    resetMap();
+    capMap.splice(index, 1);
+    updateComponentes();
   }
 }
 
-function checkCap (select) { //nos permite verificar
+function checkCap (select) {
   for (let index = 0; index < capMap.length; index++) {
     if (select == capMap[index]['name']) {
       return true;
     }
   }
-  return false; //impide diplicaciones
+  return false;
 }
 
-function resetIcon () {//lo que nos hace creamos el icono azul 
+function resetIcon () {
   // Reset color:
   var blueIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -135,9 +134,9 @@ function resetIcon () {//lo que nos hace creamos el icono azul
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
-//en el arreglo dinamico hacemos un foreach
+
   for (let index = 0; index < capMap.length; index++) {
-//buscamos en el arreglo dinamico con each las propíedades y comparamos con el nombre y cambiamos el color
+
     capMap[index]['data'].eachLayer(function (layer) {  
       if(layer.feature.properties.amenity == capMap[index]['name']) {    
         layer.setIcon(blueIcon) 
@@ -151,9 +150,8 @@ function resetIcon () {//lo que nos hace creamos el icono azul
     console.log("Recoloreando");
   }
 }
-//requiere item y capa
-function seeCapSelect (cap, id) { //cap es la posicion
-  //la capa es la posicion de la capa
+
+function seeCapSelect (cap, id) {
 
   // Reset color:
   var blueIcon = new L.Icon({
@@ -173,7 +171,7 @@ function seeCapSelect (cap, id) { //cap es la posicion
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
-//este primer foor resetea en azzul
+
   for (let index = 0; index < capMap.length; index++) {
 
     capMap[index]['data'].eachLayer(function (layer) {  
@@ -188,7 +186,7 @@ function seeCapSelect (cap, id) { //cap es la posicion
 
     console.log("Recoloreando");
   }
-// una vez reseteado ejecutamos para encontrar el nombre que sea igual
+
   for (let index = 0; index < capMap.length; index++) {
 
     capMap[index]['data'].eachLayer(function (layer) {  
@@ -203,15 +201,15 @@ function seeCapSelect (cap, id) { //cap es la posicion
 
     console.log("Recoloreando el seleccionado");
   }
-//tenemos que eliminar y agregar
+
   resetMap();
-  updateComponentes(); //resetea y reagrega
+  updateComponentes();
 
   var radio = document.getElementById(id);
-  radio.checked = true; // los id son unicos, cuando se reconstruya se pone selec 
+  radio.checked = true;
 }
 
-function drawItemSelect(option) { //para saber de que lista viene
+function drawItemSelect(option) {
 
   var combo = null;
   
@@ -229,18 +227,15 @@ function drawItemSelect(option) { //para saber de que lista viene
     return;
   }
 
-  function onEachFeature(feature, layer) { //esto hace e ppopout de los marcadores
+  function onEachFeature(feature, layer) {
     console.log(feature)
     if (feature.properties.amenity) {
-      var lat = feature.geometry.coordinates[1];
-      var lng = feature.geometry.coordinates[0];
-      var akey = "a270636c43724c4c8b0c8c55c0b2a130";
-      var popupContent = "<p>" + feature.properties.amenity + "</p>"+"<p>" + feature.properties.name + "</p>"+"<p>" +'<iframe src="https://www.google.com/maps/embed/v1/streetview?key='+akey+'&location='+lat+','+lng+'&heading=210&pitch=10&fov=35" style="width:100%;border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' + feature.geometry.coordinates + "</p>";
+      var popupContent = "<p>" + feature.properties.amenity + "</p>";
       layer.bindPopup(popupContent);
     }
 
     if (feature.properties.highway) {
-      var popupContent = "<p>" + feature.properties.highway + "</p>"+"<p>" + feature.geometry.coordinates + "</p>";
+      var popupContent = "<p>" + feature.properties.highway + "</p>";
       layer.bindPopup(popupContent);
     }
  }
@@ -282,8 +277,7 @@ function drawItemSelect(option) { //para saber de que lista viene
         shadowSize: [41, 41]
       });
 
-        // Test de modal: //IMPORTANTE
-        //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
+        // Test de modal:
         var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
           var blueIcon = new L.Icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -294,19 +288,16 @@ function drawItemSelect(option) { //para saber de que lista viene
             shadowSize: [41, 41]
           });
           return L.marker(latlng, {icon: blueIcon});
-          //latin, ledamos icon  y el icono
           }, onEachFeature: onEachFeature });
-          //propiedad del primer popup
 
         // Creating objet for push:
-        //creamos la variable global
         var strutureCap =  null;
 
-        if (option == 0) {//se pierden de la memoria de los valores
+        if (option == 0) {
           strutureCap = {
             name: selected,
             type: 'Amenity',
-            data: geo //este seria el geojeson
+            data: geo
           };
         }
 
@@ -323,7 +314,7 @@ function drawItemSelect(option) { //para saber de que lista viene
 
         capMap.push(strutureCap);
         resetIcon();
-        updateComponentes(); //actualizamos todos los componentes
+        updateComponentes();
 
       
         // Leemos el goejson que creamos y lo agregamos al mapa...
@@ -395,10 +386,10 @@ function drawItemSelect(option) { //para saber de que lista viene
 map.on('draw:created', function (e) {
  removeOptions();
 
- // Reseteamos el mapa y datos. cuado hacemos otro cuadrito
- resetMap(); //reseamos el mapa
- capMap = [];//para el arreglo nuevo
- updateComponentes();//para el popup
+ // Reseteamos el mapa y datos.
+ resetMap();
+ capMap = [];
+ updateComponentes();
  
   // Agregamos la layer con el cuadrito al mapa (pa que se va)...
   editableLayers.addLayer(e.layer);
@@ -659,4 +650,4 @@ const legend = L.control.Legend({
             fillColor: "#FF0000",
             weight: 2
         }]
-})//.addTo(map);
+}).addTo(map);

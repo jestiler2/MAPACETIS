@@ -90,8 +90,8 @@ function addComponents () { //este formatea primero el mapa
     structure = '<div class="input-group mb-3">' +
                   '<div style="display: flex; width: 100%">' +
                     '<div class="input-group-prepend">' +
-                      '<div class="input-group-text" style="background-color: ' + capMap[index]['colorGUI'] + ';">' +
-                        '<input type="checkbox" aria-label="Checkbox for following text input" id="element' + index + '" onclick=' + '"javascript:seeCapSelect(' + "'" + capMap[index]['name'] + "', " + index + ')">' +
+                      '<div class="input-group-text" style="background-color: ' + capMap[index]['colorGUI'] + '; cursor: pointer;" onclick=' + '"javascript:seeCapSelect(' + "'" + capMap[index]['name'] + "', " + index + ')">' +
+                        '<input type="checkbox" aria-label="Checkbox for following text input" id="element' + index + '">' +
                       '</div>' +
                     '</div>' +
                     '<div style="display: flex; width: 100%; background-color: #FFFFFF; padding: 10px; border: 1px solid #ced4da;">' +

@@ -43,6 +43,24 @@
             z-index: 401;
         }
 
+        .spacing {
+            margin-top: 1rem!important;
+        }
+
+        .spacing-inter {
+            padding-left: 10px!important;
+        }
+
+        @media (max-width: 991px) {
+            .spacing {
+                margin-top: 0px!important;
+            }
+
+            .spacing-inter {
+                padding-left: 0px!important;
+            }
+        }
+
     </style>
 
     <link href="list-groups.css" rel="stylesheet">
@@ -83,59 +101,73 @@
         </div> -->
     </div>
 
-    <h1>Mapa Localizaciones</h1>
+    <h1 style="padding: 20px;">Mapa Localizaciones</h1>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: -10px;">
+        <a class="navbar-brand spacing-inter" href="#">C&V GEO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item active spacing-inter">
+                <input id="urlTxt" type="text" class="form-control mb-3 spacing" style="margin-top: 1rem !important;" aria-label="" aria-describedby="basic-addon1" placeholder="URL de la consulta" disabled>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+            <li class="nav-item spacing-inter">
+                <a href="newfile1.json" target="_blank" class="btn btn-outline-secondary mb-3 spacing" type="button">Ver archivo</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
+            <li class="nav-item spacing-inter">
+                <a href="newfile2.json" download="export.Geojson" class="btn btn-outline-secondary mb-3 spacing" type="button">Descargar archivo</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+            <li class="nav-item spacing-inter">
+                <div class="input-group mb-3 spacing">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Amenity</label>
+                    </div>
+                    <select class="custom-select" id="menubox" onchange="javascript:drawItemSelect(0)">
+                      <option selected>Choose...</option>
+                    </select>
+                </div>
             </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+            <li class="nav-item spacing-inter">
+                <div class="input-group mb-3 spacing">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Highway</label>
+                    </div>
+                    <select class="custom-select" id="menubox2" onchange="javascript:drawItemSelect(1)">
+                      <option selected>Choose...</option>
+                    </select>
+                </div>
+            </li>
+            <li class="nav-item spacing-inter">
+                <div class="input-group mb-3 spacing">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Way</label>
+                    </div>
+                    <select class="custom-select" id="menubox3" onchange="javascript:drawItemSelect(2)">
+                      <option selected>Choose...</option>
+                    </select>
+                </div>
+            </li>
         </div>
       </nav>
 
     <!-- Creamos un botón principal 001 -->
     <!-- <input id="boton" type="boton" value="Capas biciruta" onClick="this.disabled=true"> -->
-    <input id="urlTxt" type="text" class="form-control" aria-label="" aria-describedby="basic-addon1" placeholder="URL de la consulta" disabled>
+    <!-- <input id="urlTxt" type="text" class="form-control" aria-label="" aria-describedby="basic-addon1" placeholder="URL de la consulta" disabled> -->
 
     <!-- aqui creo el enlace para abrir en una nueva pestaña el archivo con los datos geojson -->
-    <a href="newfile2.json" target="_blank" class="btn btn-outline-secondary" type="button">Ver archivo</a>
+    <!-- <a href="newfile2.json" target="_blank" class="btn btn-outline-secondary" type="button">Ver archivo</a> -->
     <!-- aqui pongo otro enlace para descargar el mismo archivo -->
-    <a href="newfile2.json" download="export.Geojson" class="btn btn-outline-secondary" type="button">Descargar archivo</a>
+    <!-- <a href="newfile2.json" download="export.Geojson" class="btn btn-outline-secondary" type="button">Descargar archivo</a> -->
 
-    <select name="" id="menubox" onchange="javascript:drawItemSelect(0)">
+    <!-- <select name="" id="menubox" onchange="javascript:drawItemSelect(0)">
         <option disabled selected>Opciones de Amenidades</option>
         <optgroup label="Amenidades"></optgroup>
-    </select>
+    </select> -->
 
-    <div class="input-group mb-3 col col-lg-2">
+    <!-- <div class="input-group mb-3 col col-lg-2">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Options</label>
         </div>
@@ -145,9 +177,9 @@
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
-    </div>
+    </div> -->
 
-    <div class="input-group mb-3 col col-lg-2">
+    <!-- <div class="input-group mb-3 col col-lg-2">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Options</label>
         </div>
@@ -157,9 +189,9 @@
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
-    </div>
+    </div> -->
 
-    <div class="input-group mb-3 col col-lg-2">
+    <!-- <div class="input-group mb-3 col col-lg-2">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">Options</label>
         </div>
@@ -169,20 +201,20 @@
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
-    </div>
+    </div> -->
 
-    <select name="" id="menubox2" onchange="javascript:drawItemSelect(1)">
+    <!-- <select name="" id="menubox2" onchange="javascript:drawItemSelect(1)">
         <option disabled selected>Opciones de Highways</option>
-        <optgroup label="Highways"></optgroup>
+        <optgroup label="Highways"></optgroup> -->
         <!-- <option disabled selected>Opciones de Ways</option>
         <optgroup label="ways"></optgroup> -->
-    </select>
+    <!-- </select> -->
 
-    <select name="" id="menubox3" onchange="javascript:drawItemSelect(2)">
+    <!-- <select name="" id="menubox3" onchange="javascript:drawItemSelect(2)">
         <option disabled selected>Opciones de Ways</option>
         <optgroup label="ways"></optgroup>
 
-    </select>
+    </select> -->
 
     <!-- Esta es la div donde se vaa ver el mapa -->
     <div id="map" style="width:100%; top: 10px;">

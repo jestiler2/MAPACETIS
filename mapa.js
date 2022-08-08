@@ -86,19 +86,35 @@ function addComponents () { //este formatea primero el mapa
   //esta es la estructura que se crea con boostrap
   for (let index = 0; index < capMap.length; index++) {
     const e = document.createElement('div');
-    var structure =   "<label class='list-group-item d-flex gap-2' onclick=" + '"javascript:seeCapSelect(' + "'" + capMap[index]['name'] + "', " + "'radio" + index + "'" + ')">' +
-                          "<div " + 'style="display: flex; width: 50%; justify-content: flex-start; align-items: center;"' + 
-                      "><input class='form-check-input flex-shrink-0' type='radio' name='listGroupRadios' id='radio" + index + "' value=''>&nbsp;" +
-                            "<span>" +
-                                capMap[index]['name'].toUpperCase()  +
-                                "<small class='d-block text-muted'>" + capMap[index]['type'] + "</small>" +
-                          "</span></div>" +
-                          "<div "  + 'style="display: flex; width: 50%; justify-content: flex-end; align-items: center;"' + "><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/OOjs_UI_icon_clear-destructive.svg/1200px-OOjs_UI_icon_clear-destructive.svg.png' alt='twbs' width='32' height='32' class='rounded-circle flex-shrink-0' onclick='" + 'javascript:deleteGUI(' + index + ')' + "' style='cursor: pointer;'></div>" +
-                          "&nbsp;" +
-                      "</label>";
+    var structure = ""
+    structure = '<div class="input-group mb-3">' +
+                  '<div style="display: flex; width: 100%">' +
+                    '<div class="input-group-prepend">' +
+                      '<div class="input-group-text" style="background-color: ' + capMap[index]['colorGUI'] + ';">' +
+                        '<input type="checkbox" aria-label="Checkbox for following text input" id="element' + index + '" onclick=' + '"javascript:seeCapSelect(' + "'" + capMap[index]['name'] + "', " + index + ')">' +
+                      '</div>' +
+                    '</div>' +
+                    '<div style="display: flex; width: 100%; background-color: #FFFFFF; padding: 10px; border: 1px solid #ced4da;">' +
+                      '<span style="margin-right: 10px;">' +
+                        capMap[index]['name'].toUpperCase()  +
+                        "<small class='d-block text-muted'>" + capMap[index]['type'] + "</small>" +
+                      "</span>" +
+                      "<div "  + 'style="display: flex; width: 50%; justify-content: flex-end; align-items: center;"' + "><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/OOjs_UI_icon_clear-destructive.svg/1200px-OOjs_UI_icon_clear-destructive.svg.png' alt='twbs' width='32' height='32' class='rounded-circle flex-shrink-0' onclick='" + 'javascript:deleteGUI(' + index + ')' + "' style='cursor: pointer;'></div>" +
+                    "</div>" +
+                  '</div>' +
+                '</div>';
     e.innerHTML = structure; 
     document.getElementById("internsData").appendChild(e);
     capMap[index]['data'].addTo(map);//agregamos al mapa
+  }
+
+  for (let index = 0; index < capMap.length; index++) {
+    if (capMap[index]['enable'] == true) {
+      var select = document.getElementById("element" + index);
+      console.log("element"+index)
+      console.log(capMap[index]['enable'])
+      select.checked = capMap[index]['enable']
+    }
   }
 }
 
@@ -121,7 +137,7 @@ function deleteGUI (index) {
                                 '</button>' +
                             '</div>' +
                             '<div class="modal-body">' +
-                              '¿Realmente desea eliminar esta ubicacióm marcada en el mapa? ' + index +
+                              '¿Realmente desea eliminar esta ubicacióm marcada en el mapa?' +
                             '</div>' +
                             '<div class="modal-footer">' +
                               '<button type="button" class="btn btn-primary"' + "onclick='" + 'javascript:deleteCap(' + index + ')' + "'>Aceptar</button>'" +
@@ -135,14 +151,10 @@ function deleteGUI (index) {
 }
 
 function deleteCap (index) {
-  let clear = confirm("¿Seguro que desea eliminarlo del mapa?");//creamos la alerta
-
-  if (clear == true) { //si le dimos a borrar
     resetMap(); //reseteamos 
     capMap.splice(index, 1);//al arreglo lo borramos, el arreglo dinamico el 1 solo elimina el 1 elemento
     updateComponentes();//actualizamos los componentes
     $("#exampleModalCenter").modal('toggle')
-  }
 }
 
 function checkCap (select) { //nos permite verificar
@@ -157,7 +169,7 @@ function checkCap (select) { //nos permite verificar
 function resetIcon () {//lo que nos hace creamos el icono azul 
   // Reset color:
   var blueIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -177,7 +189,7 @@ for (let index = 0; index < capMap.length; index++) {
     }
 
     if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Way") {    
-      layer.setStyle({color :'blue'})
+      layer.setStyle({color :'2A81CB'})
       console.log("Cambiando a azul el Way")
     }
   });
@@ -189,18 +201,11 @@ for (let index = 0; index < capMap.length; index++) {
 function seeCapSelect (cap, id) { //cap es la posicion
   //la capa es la posicion de la capa
 
+  capMap[id]['enable'] = !capMap[id]['enable']
+
   // Reset color:
   var blueIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-
-  var greenIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -221,7 +226,7 @@ function seeCapSelect (cap, id) { //cap es la posicion
       }
 
       if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Way") {    
-        layer.setStyle({color :'blue'})
+        layer.setStyle({color : '#2A81CB'})
         console.log("Cambiando a azul el Way")
       }
     });
@@ -234,19 +239,28 @@ function seeCapSelect (cap, id) { //cap es la posicion
     console.log(capMap[index]['data']);
     console.log(capMap[index]);
 
+    var greenIcon = new L.Icon({
+      iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + capMap[index]['color'] + '&chf=a,s,ee00FFFF',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+
     capMap[index]['data'].eachLayer(function (layer) {  
-      if(layer.feature.properties.amenity == cap) {    
+      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Amenity") {    
         layer.setIcon(greenIcon) 
         console.log("ameniti");
       }
 
-      if(layer.feature.properties.highway == cap && capMap[index]['type'] == "Highway") {    
+      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Highway") {    
         layer.setIcon(greenIcon) 
         console.log("soy hihgway");
       }
 
-      if(layer.feature.properties.highway == cap && capMap[index]['type'] == "Way") {
-        layer.setStyle({color :'red'})
+      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Way") {
+        layer.setStyle({color : capMap[index]['color']})
         console.log("soy Way");
         console.log("Cambiando a rojo el Way")
       }
@@ -257,9 +271,6 @@ function seeCapSelect (cap, id) { //cap es la posicion
 //tenemos que eliminar y agregar
   resetMap();
   updateComponentes(); //resetea y reagrega
-
-  var radio = document.getElementById(id);
-  radio.checked = true; // los id son unicos, cuando se reconstruya se pone selec 
 }
 
 function drawItemSelect(option) { //para saber de que lista viene 
@@ -325,28 +336,29 @@ function drawItemSelect(option) { //para saber de que lista viene
       //     opacity: 1,
       //     fillOpacity: 0.8
       // };
-      var geoJsonPoint = new L.marker({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-      });
-      var greenIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-      });
+
+      // var geoJsonPoint = new L.marker({
+      //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+      //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      //   iconSize: [25, 41],
+      //   iconAnchor: [12, 41],
+      //   popupAnchor: [1, -34],
+      //   shadowSize: [41, 41]
+      // });
+      // var greenIcon = new L.Icon({
+      //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+      //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      //   iconSize: [25, 41],
+      //   iconAnchor: [12, 41],
+      //   popupAnchor: [1, -34],
+      //   shadowSize: [41, 41]
+      // });
 
         // Test de modal: //IMPORTANTE
         //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
         var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
           var blueIcon = new L.Icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+            iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
@@ -361,12 +373,17 @@ function drawItemSelect(option) { //para saber de que lista viene
         // Creating objet for push:
         //creamos la variable global
         var strutureCap =  null;
+        var colorIcon = generateRandomCodeIcon()
+        var colorWay = generateRandomCode()
 
         if (option == 0) {//se pierden de la memoria de los valores
           strutureCap = {
             name: selected,
             type: 'Amenity',
-            data: geo //este seria el geojeson
+            data: geo,
+            color: colorIcon,
+            enable: false,
+            colorGUI: "#" + colorIcon
           };
         }
 
@@ -374,7 +391,10 @@ function drawItemSelect(option) { //para saber de que lista viene
           strutureCap = {
             name: selected,
             type: 'Highway',
-            data: geo
+            data: geo,
+            color: colorIcon,
+            enable: false,
+            colorGUI: "#" + colorIcon
           };
         }
 
@@ -382,7 +402,10 @@ function drawItemSelect(option) { //para saber de que lista viene
           strutureCap = {
             name: selected,
             type: 'Way',
-            data: geo
+            data: geo,
+            color: colorWay,
+            enable: false,
+            colorGUI: colorWay
           };
         }
 
@@ -396,7 +419,7 @@ function drawItemSelect(option) { //para saber de que lista viene
       
         // Leemos el goejson que creamos y lo agregamos al mapa...
         // L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } }).addTo(map);
-        L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } })
+        //L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } })
         //aqui se agregan las CAPAAAS
         // Mostramos en la consola la respuesta...
         console.log(result);
@@ -454,9 +477,29 @@ function drawItemSelect(option) { //para saber de que lista viene
     );
 }
 
+// Funcion generadora de letras hexadecimales
+function generarLetra(){
+	var letras = ["a","b","c","d","e","f","0","1","2","3","4","5","6","7","8","9"];
+	var numero = (Math.random()*15).toFixed(0);
+	return letras[numero];
+}
 
+// Funcion de generación de colores aleatorios
+function generateRandomCode() {
+  var coolor = "";
+	for(var i=0;i<6;i++){
+		coolor = coolor + generarLetra() ;
+	}
+	return "#" + coolor;
+}
 
-
+function generateRandomCodeIcon() {
+  var coolor = "";
+	for(var i=0;i<6;i++){
+		coolor = coolor + generarLetra() ;
+	}
+	return coolor;
+}
 
 
 // Tomamos latitudes y longitudes de los cuadros hechos y llamamos al web service con los parámetros...

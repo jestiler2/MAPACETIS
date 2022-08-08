@@ -59,15 +59,10 @@
 </head>
 
 <body>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Launch demo modal
-    </button>
     
     <!-- Modal -->
     <div id="modal-delete">
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,24 +80,96 @@
                 </div>
             </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <h1>Mapa Localizaciones</h1>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
     <!-- Creamos un botón principal 001 -->
     <!-- <input id="boton" type="boton" value="Capas biciruta" onClick="this.disabled=true"> -->
-    <input id="urlTxt" type="text" placeholder="URL de la consulta">
+    <input id="urlTxt" type="text" class="form-control" aria-label="" aria-describedby="basic-addon1" placeholder="URL de la consulta" disabled>
 
     <!-- aqui creo el enlace para abrir en una nueva pestaña el archivo con los datos geojson -->
-    <a href="newfile2.json" target="_blank" class="boton">Ver archivo</a>
+    <a href="newfile2.json" target="_blank" class="btn btn-outline-secondary" type="button">Ver archivo</a>
     <!-- aqui pongo otro enlace para descargar el mismo archivo -->
-    <a href="newfile2.json" download="export.Geojson" class="boton">Descargar archivo</a>
+    <a href="newfile2.json" download="export.Geojson" class="btn btn-outline-secondary" type="button">Descargar archivo</a>
 
     <select name="" id="menubox" onchange="javascript:drawItemSelect(0)">
         <option disabled selected>Opciones de Amenidades</option>
         <optgroup label="Amenidades"></optgroup>
     </select>
+
+    <div class="input-group mb-3 col col-lg-2">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Options</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3 col col-lg-2">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Options</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3 col col-lg-2">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Options</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+    </div>
 
     <select name="" id="menubox2" onchange="javascript:drawItemSelect(1)">
         <option disabled selected>Opciones de Highways</option>

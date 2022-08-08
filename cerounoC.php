@@ -118,14 +118,16 @@ $encode3 = $variablej3->elements;
 //      }
 //  }
 
+$geojson = null;
+$seleccion = $_POST["search"];
 
-if(!empty($variablej->elements)&& $_POST["search"] == 0){ 
+if(!empty($variablej->elements) && $seleccion == 0){ 
    $geojson = Overpass2Geojson::convertNodes($html,false);
 }
-if(!empty($variablej2->elements)&& $_POST["search"] == 1){ 
+if(!empty($variablej2->elements)&& $seleccion == 1){ 
    $geojson = Overpass2Geojson::convertNodes($html2,false);
 }
-if(!empty($variablej3->elements) && $_POST["search"] == 2){ 
+if(!empty($variablej3->elements) && $seleccion == 2){ 
    $geojson = Overpass2Geojson::convertWays($html3,false);
 }
 

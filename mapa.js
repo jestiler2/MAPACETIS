@@ -1,3 +1,7 @@
+// Agregamos funcionalidad del modal
+
+
+
 
 // Creamos el mapa y lo centramos... 
 let map = L.map('map').setView([23.466302332191862, -102.1152141635831], 5) //nos permite ver el mapa
@@ -79,7 +83,7 @@ function resetMap () {
 function addComponents () { //este formatea primero el mapa
 
   resetMap(); //reseteamos
-//esta es la estructura que se crea con boostrap
+  //esta es la estructura que se crea con boostrap
   for (let index = 0; index < capMap.length; index++) {
     const e = document.createElement('div');
     var structure =   "<label class='list-group-item d-flex gap-2' onclick=" + '"javascript:seeCapSelect(' + "'" + capMap[index]['name'] + "', " + "'radio" + index + "'" + ')">' +
@@ -89,7 +93,7 @@ function addComponents () { //este formatea primero el mapa
                                 capMap[index]['name'].toUpperCase()  +
                                 "<small class='d-block text-muted'>" + capMap[index]['type'] + "</small>" +
                           "</span></div>" +
-                          "<div "  + 'style="display: flex; width: 50%; justify-content: flex-end; align-items: center;"' + "><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/OOjs_UI_icon_clear-destructive.svg/1200px-OOjs_UI_icon_clear-destructive.svg.png' alt='twbs' width='32' height='32' class='rounded-circle flex-shrink-0' onclick='" + 'javascript:deleteCap(' + index + ')' + "' style='cursor: pointer;'></div>" +
+                          "<div "  + 'style="display: flex; width: 50%; justify-content: flex-end; align-items: center;"' + "><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/OOjs_UI_icon_clear-destructive.svg/1200px-OOjs_UI_icon_clear-destructive.svg.png' alt='twbs' width='32' height='32' class='rounded-circle flex-shrink-0' onclick='" + 'javascript:deleteGUI(' + index + ')' + "' style='cursor: pointer;'></div>" +
                           "&nbsp;" +
                       "</label>";
     e.innerHTML = structure; 
@@ -106,6 +110,30 @@ function updateComponentes () {
   addComponents()
 }
 
+function deleteGUI (index) {
+  var template = '<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+                    '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                        '<div class="modal-content">' +
+                            '<div class="modal-header">' +
+                               '<h5 class="modal-title" id="exampleModalLongTitle">Eliminar ubicación en el mapa</h5>' +
+                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                                '</button>' +
+                            '</div>' +
+                            '<div class="modal-body">' +
+                              '¿Realmente desea eliminar esta ubicacióm marcada en el mapa? ' + index +
+                            '</div>' +
+                            '<div class="modal-footer">' +
+                              '<button type="button" class="btn btn-primary"' + "onclick='" + 'javascript:deleteCap(' + index + ')' + "'>Aceptar</button>'" +
+                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Eliminar</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                  '</div>';
+    document.getElementById("modal-delete").innerHTML = template
+    $("#exampleModalCenter").modal('toggle')
+}
+
 function deleteCap (index) {
   let clear = confirm("¿Seguro que desea eliminarlo del mapa?");//creamos la alerta
 
@@ -113,6 +141,7 @@ function deleteCap (index) {
     resetMap(); //reseteamos 
     capMap.splice(index, 1);//al arreglo lo borramos, el arreglo dinamico el 1 solo elimina el 1 elemento
     updateComponentes();//actualizamos los componentes
+    $("#exampleModalCenter").modal('toggle')
   }
 }
 
@@ -135,21 +164,26 @@ function resetIcon () {//lo que nos hace creamos el icono azul
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
-//en el arreglo dinamico hacemos un foreach
-  for (let index = 0; index < capMap.length; index++) {
-//buscamos en el arreglo dinamico con each las propíedades y comparamos con el nombre y cambiamos el color
-    capMap[index]['data'].eachLayer(function (layer) {  
-      if(layer.feature.properties.amenity == capMap[index]['name']) {    
-        layer.setIcon(blueIcon) 
-      }
+//en el arreglo dinamico hacemos un foreach para reinicializar todo en azul
+for (let index = 0; index < capMap.length; index++) {
 
-      if(layer.feature.properties.highway == capMap[index]['name']) {    
-        layer.setIcon(blueIcon) 
-      }
-    });
+  capMap[index]['data'].eachLayer(function (layer) {  
+    if(layer.feature.properties.amenity == capMap[index]['name']) {    
+      layer.setIcon(blueIcon) 
+    }
 
-    console.log("Recoloreando");
-  }
+    if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Highway") {    
+      layer.setIcon(blueIcon) 
+    }
+
+    if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Way") {    
+      layer.setStyle({color :'blue'})
+      console.log("Cambiando a azul el Way")
+    }
+  });
+
+  console.log("Recoloreando");
+}
 }
 //requiere item y capa
 function seeCapSelect (cap, id) { //cap es la posicion
@@ -173,7 +207,8 @@ function seeCapSelect (cap, id) { //cap es la posicion
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
-//este primer foor resetea en azzul
+
+  //este primer foor resetea en azzul
   for (let index = 0; index < capMap.length; index++) {
 
     capMap[index]['data'].eachLayer(function (layer) {  
@@ -181,14 +216,20 @@ function seeCapSelect (cap, id) { //cap es la posicion
         layer.setIcon(blueIcon) 
       }
 
-      if(layer.feature.properties.highway == capMap[index]['name']) {    
+      if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Highway") {    
         layer.setIcon(blueIcon) 
+      }
+
+      if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Way") {    
+        layer.setStyle({color :'blue'})
+        console.log("Cambiando a azul el Way")
       }
     });
 
     console.log("Recoloreando");
   }
-// una vez reseteado ejecutamos para encontrar el nombre que sea igual
+
+  // una vez reseteado ejecutamos para encontrar el nombre que sea igual
   for (let index = 0; index < capMap.length; index++) {
     console.log(capMap[index]['data']);
     console.log(capMap[index]);
@@ -199,9 +240,15 @@ function seeCapSelect (cap, id) { //cap es la posicion
         console.log("ameniti");
       }
 
-      if(layer.feature.properties.highway == cap) {    
+      if(layer.feature.properties.highway == cap && capMap[index]['type'] == "Highway") {    
         layer.setIcon(greenIcon) 
         console.log("soy hihgway");
+      }
+
+      if(layer.feature.properties.highway == cap && capMap[index]['type'] == "Way") {
+        layer.setStyle({color :'red'})
+        console.log("soy Way");
+        console.log("Cambiando a rojo el Way")
       }
     });
 
@@ -263,6 +310,8 @@ function drawItemSelect(option) { //para saber de que lista viene
   var dos = null; //para comprobar que este vacio
   // var menu = document.getElementById("menubox");
   // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
+  console.log(selected)
+  console.log(option)
   $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
     { "unidad": selected, "search": option }).done( // Mandamos los parámwetros..
       // Función que se ejecuta cuando obtenemos la respuesta del web service...
@@ -487,7 +536,6 @@ map.on('draw:created', function (e) {
           }
         }
 
-
         // Agregamos al url al text input que SI es un text input...
         $("#urlTxt").val(data[3]);
         // Si recibimos la respuesta quitamos el letrero de cargando...
@@ -497,10 +545,11 @@ map.on('draw:created', function (e) {
 
   console.log(dos);
 
-
-
-
-
+  // Agrega el zoon automático en el mapa
+  map.fitBounds([
+    [Lat1, Lon1],
+    [Lat2, Lon2]
+  ]);
 
 });
 
@@ -538,17 +587,6 @@ activities.addEventListener("click", function() {
 
       drawItemSelect(0);
     }
-
-    // var combo = document.getElementById("menubox");
-    // var selected = combo.options[combo.selectedIndex].text;
-    // var selected2 = combo.options[0].text;
-
-    // if(selected == selected2)
-    // {
-    //   console.log("entre en if 2");
-
-    //   drawItemSelect();
-    // }
 });
 
 var activities2 = document.getElementById("menubox2");
@@ -562,17 +600,6 @@ activities2.addEventListener("click", function() {
 
       drawItemSelect(1);
     }
-
-    // var combo = document.getElementById("menubox");
-    // var selected = combo.options[combo.selectedIndex].text;
-    // var selected2 = combo.options[0].text;
-
-    // if(selected == selected2)
-    // {
-    //   console.log("entre en if 2");
-
-    //   drawItemSelect();
-    // }
 });
 
 var activities3 = document.getElementById("menubox3");
@@ -586,17 +613,6 @@ activities3.addEventListener("click", function() {
 
       drawItemSelect(2);
     }
-
-    // var combo = document.getElementById("menubox");
-    // var selected = combo.options[combo.selectedIndex].text;
-    // var selected2 = combo.options[0].text;
-
-    // if(selected == selected2)
-    // {
-    //   console.log("entre en if 2");
-
-    //   drawItemSelect();
-    // }
 });
 
 

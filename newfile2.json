@@ -1,1 +1,1 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"highway":"traffic_signals"},"geometry":{"type":"Point","coordinates":[-99.1431892,19.4215]}},{"type":"Feature","properties":{"highway":"traffic_signals"},"geometry":{"type":"Point","coordinates":[-99.1431212,19.4221653]}}]}
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"bench":"yes","bus":"yes","highway":"bus_stop","public_transport":"platform","shelter":"yes"},"geometry":{"type":"Point","coordinates":[-99.1426862,19.4444959]}}]}

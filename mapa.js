@@ -141,7 +141,7 @@ function deleteGUI (index) {
                             '</div>' +
                             '<div class="modal-footer">' +
                               '<button type="button" class="btn btn-primary"' + "onclick='" + 'javascript:deleteCap(' + index + ')' + "'>Aceptar</button>'" +
-                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Eliminar</button>' +
+                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>' +
                             '</div>' +
                         '</div>' +
                     '</div>' +
@@ -413,7 +413,6 @@ function drawItemSelect(option) { //para saber de que lista viene
         console.log(strutureCap);
 
         capMap.push(strutureCap);
-        resetIcon();
         updateComponentes(); //actualizamos todos los componentes
 
       

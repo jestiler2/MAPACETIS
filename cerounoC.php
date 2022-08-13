@@ -46,7 +46,6 @@ $overpass2 = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(node[
 $overpass3 = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(way["highway"="'.$_POST["unidad"].'"]('.$lat1.','.$long1.','.$lat2.','.$long2.');node(w)->.x;);out;';
 
 
-
 // $overpass = 'https://www.overpass-api.de/api/interpreter?data=[out:json];(way["highway"="cycleway"]('.$_POST["Lat1"].','.$_POST["Lon1"].','.$_POST["Lat2"].','.$_POST["Lon2"].');node(w)->.x;);out;';
 
 
@@ -118,6 +117,7 @@ $encode3 = $variablej3->elements;
 //      }
 //  }
 
+//el error era era del json cuando no coincidian O POR QU ESTA VASIO , poner excepcion.
 $geojson = null;
 $seleccion = $_POST["search"];
 

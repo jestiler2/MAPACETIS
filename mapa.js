@@ -16,13 +16,6 @@ var capMap = [];
 
 // Queremos activar el contro lde dibujo (el cuadrito en la parte superior derecha)...
 
-
-// Volar a coordenadas de los sitios de la Lista desplegable
-// document.getElementById('select-location').addEventListener('change', function(e){
-//   let coords = e.target.value.split(",");
-//   map.flyTo(coords,13);
-// })
-
 // 1.- creo sus propiedades
 var drawPluginOptions = {
   position: 'topright',
@@ -65,17 +58,10 @@ function style(feature) {
 }
 
 //este es la inversa del acto , el requisito es que las capas esten guardadas
+//las capmap son las capas dinamicas
 function resetMap () {
   for (let index = 0; index < capMap.length; index++) {
-    // map.removeLayer(capMap[index]['data']);
-    // map.eachLayer( function(layer) {
     capMap[index]['data'].removeFrom(map);
-      //capMap[index]['data'].clearLayers();
-    //   if ( layer.myTag &&  layer.myTag == capMap[index]['name']) {
-    //     map.removeLayer(layer)
-    //       }
-
-    //     });
     console.log("Borrando");
   }
 }
@@ -108,12 +94,13 @@ function addComponents () { //este formatea primero el mapa
     capMap[index]['data'].addTo(map);//agregamos al mapa
   }
 
+  // el color gui.
   for (let index = 0; index < capMap.length; index++) {
     if (capMap[index]['enable'] == true) {
       var select = document.getElementById("element" + index);
       console.log("element"+index)
       console.log(capMap[index]['enable'])
-      select.checked = capMap[index]['enable']
+      select.checked = capMap[index]['enable'] //checa si esta en true o false para cuando se colorea
     }
   }
 }
@@ -126,7 +113,7 @@ function updateComponentes () {
   addComponents()
 }
 
-function deleteGUI (index) {
+function deleteGUI (index) { //sirve para eliminar elementos 
   var template = '<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
                     '<div class="modal-dialog modal-dialog-centered" role="document">' +
                         '<div class="modal-content">' +
@@ -146,18 +133,19 @@ function deleteGUI (index) {
                         '</div>' +
                     '</div>' +
                   '</div>';
-    document.getElementById("modal-delete").innerHTML = template
-    $("#exampleModalCenter").modal('toggle')
+    document.getElementById("modal-delete").innerHTML = template //inner nos actualiza reseteando elc ocomponente
+    $("#exampleModalCenter").modal('toggle') //este nos intercambia , abre y prende la ventana, si esta en true pasa a folse, el jquery
+    //toggle nos hace lo del cambia, cuando presionamos la tacha llama el metodo
 }
 
-function deleteCap (index) {
+function deleteCap (index) { //este
     resetMap(); //reseteamos 
     capMap.splice(index, 1);//al arreglo lo borramos, el arreglo dinamico el 1 solo elimina el 1 elemento
     updateComponentes();//actualizamos los componentes
-    $("#exampleModalCenter").modal('toggle')
+    $("#exampleModalCenter").modal('toggle') //es el mismo elemento para borrar
 }
 
-function checkCap (select) { //nos permite verificar
+function checkCap (select) { //nos permite verificar duplicados
   for (let index = 0; index < capMap.length; index++) {
     if (select == capMap[index]['name']) {
       return true;
@@ -166,9 +154,9 @@ function checkCap (select) { //nos permite verificar
   return false; //impide diplicaciones
 }
 
-function resetIcon () {//lo que nos hace creamos el icono azul 
+function resetIcon () {//lo que nos hace creamos el icono azul o color base
   // Reset color:
-  var blueIcon = new L.Icon({
+  var blueIcon = new L.Icon({                                                               //exadeicmal base
     iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
@@ -189,8 +177,8 @@ for (let index = 0; index < capMap.length; index++) {
     }
 
     if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Way") {    
-      layer.setStyle({color :'2A81CB'})
-      console.log("Cambiando a azul el Way")
+      layer.setStyle({color :'2A81CB'})  //cambia el color a base
+      console.log("Cambiando a azul el Way") //si es todos se umple
     }
   });
 
@@ -201,7 +189,7 @@ for (let index = 0; index < capMap.length; index++) {
 function seeCapSelect (cap, id) { //cap es la posicion
   //la capa es la posicion de la capa
 
-  capMap[id]['enable'] = !capMap[id]['enable']
+  capMap[id]['enable'] = !capMap[id]['enable'] //cuando presionamos se cambia a true , importante
 
   // Reset color:
   var blueIcon = new L.Icon({
@@ -234,12 +222,12 @@ function seeCapSelect (cap, id) { //cap es la posicion
     console.log("Recoloreando");
   }
 
-  // una vez reseteado ejecutamos para encontrar el nombre que sea igual
+  //una vez reseteado definimos los puntos del mapa que se van a colorear
   for (let index = 0; index < capMap.length; index++) {
     console.log(capMap[index]['data']);
     console.log(capMap[index]);
 
-    var greenIcon = new L.Icon({
+    var greenIcon = new L.Icon({ //dentro el for para cambiar                                             //defecto
       iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + capMap[index]['color'] + '&chf=a,s,ee00FFFF',
       shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
       iconSize: [25, 41],
@@ -249,7 +237,7 @@ function seeCapSelect (cap, id) { //cap es la posicion
     });
 
     capMap[index]['data'].eachLayer(function (layer) {  
-      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Amenity") {    
+      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Amenity") {    //si se debe colorear y es ameniti se agrega 
         layer.setIcon(greenIcon) 
         console.log("ameniti");
       }
@@ -260,7 +248,7 @@ function seeCapSelect (cap, id) { //cap es la posicion
       }
 
       if(capMap[index]['enable'] == true && capMap[index]['type'] == "Way") {
-        layer.setStyle({color : capMap[index]['color']})
+        layer.setStyle({color : capMap[index]['color']}) //el color defecto
         console.log("soy Way");
         console.log("Cambiando a rojo el Way")
       }
@@ -269,7 +257,7 @@ function seeCapSelect (cap, id) { //cap es la posicion
     console.log("Recoloreando el seleccionado");
   }
 //tenemos que eliminar y agregar
-  resetMap();
+  resetMap(); 
   updateComponentes(); //resetea y reagrega
 }
 
@@ -375,7 +363,7 @@ function drawItemSelect(option) { //para saber de que lista viene
         var strutureCap =  null;
         var colorIcon = generateRandomCodeIcon()
         var colorWay = generateRandomCode()
-
+//se agregaron los parametros nuevos, donde recuperamos los colores
         if (option == 0) {//se pierden de la memoria de los valores
           strutureCap = {
             name: selected,
@@ -429,7 +417,7 @@ function drawItemSelect(option) { //para saber de que lista viene
         var data2 = [];
         for (let i in tres) {
           if (tres[i] != null) {
-            data.push(tres[i])
+            data.push(tres[i]) //almacenamos
           }
         }
         console.log(data);
@@ -479,7 +467,7 @@ function drawItemSelect(option) { //para saber de que lista viene
 // Funcion generadora de letras hexadecimales
 function generarLetra(){
 	var letras = ["a","b","c","d","e","f","0","1","2","3","4","5","6","7","8","9"];
-	var numero = (Math.random()*15).toFixed(0);
+	var numero = (Math.random()*15).toFixed(0); //el tofixed nos da el numero entero
 	return letras[numero];
 }
 

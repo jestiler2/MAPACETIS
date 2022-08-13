@@ -447,7 +447,18 @@ function drawItemSelect(option) { //para saber de que lista viene
           // Mostramos en la consola la respuesta...
           console.log(result);
           dos = result;
-          var tres = JSON.parse(dos);
+          
+          var tres;
+
+          try {
+            tres = JSON.parse(dos);
+          }
+
+          catch (error) {
+            console.log(error)
+            return
+          }
+
           console.log(tres);
           var data = [];
           var data2 = [];
@@ -501,10 +512,6 @@ function drawItemSelect(option) { //para saber de que lista viene
   }
 
   catch (error) {
-    $('body').loadingModal('hide');
-  }
-
-  finally {
     $('body').loadingModal('hide');
   }
 }
@@ -575,7 +582,18 @@ map.on('draw:created', function (e) {
             // Mostramos en la consola la respuesta...
             console.log(result);
             dos = result;
-            var tres = JSON.parse(dos);
+
+            var tres;
+
+            try {
+              tres = JSON.parse(dos);
+            }
+
+            catch (error) {
+              console.log(error)
+              return
+            }
+
             console.log(tres);
             var data = [];
             var data2 = [];
@@ -630,10 +648,6 @@ map.on('draw:created', function (e) {
     }
 
     catch (error) {
-      $('body').loadingModal('hide');
-    }
-
-    finally {
       $('body').loadingModal('hide');
     }
 });

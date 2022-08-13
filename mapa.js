@@ -503,6 +503,10 @@ function drawItemSelect(option) { //para saber de que lista viene
   catch (error) {
     $('body').loadingModal('hide');
   }
+
+  finally {
+    $('body').loadingModal('hide');
+  }
 }
 
 // Funcion generadora de letras hexadecimales
@@ -626,6 +630,10 @@ map.on('draw:created', function (e) {
     }
 
     catch (error) {
+      $('body').loadingModal('hide');
+    }
+
+    finally {
       $('body').loadingModal('hide');
     }
 });

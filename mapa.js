@@ -347,7 +347,7 @@ function drawItemSelect(option) { //para saber de que lista viene
   console.log(selected)
   console.log(option)
   try {
-    $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
+    $.post("http://192.168.1.49//cerounoC.php", // Cual es la url de nuestro web service
       { "unidad": selected, "search": option }).done( // Mandamos los parámwetros..
         // Función que se ejecuta cuando obtenemos la respuesta del web service...
         function (result) {
@@ -380,7 +380,7 @@ function drawItemSelect(option) { //para saber de que lista viene
 
           // Test de modal: //IMPORTANTE
           //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
-          var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
+          var geo = L.geoJson.ajax("http://192.168.1.49/newfile2.json", { pointToLayer: function(feature, latlng) {
             var blueIcon = new L.Icon({
               iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
               shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -573,12 +573,12 @@ map.on('draw:created', function (e) {
       var menu2 = document.getElementById("menubox2");
       var menu3 = document.getElementById("menubox3");
       // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
-      $.post("http://localhost//0.1.php", // Cual es la url de nuestro web service
+      $.post("http://192.168.1.49//0.1.php", // Cual es la url de nuestro web service
         { "Lat1": Lat2, "Lat2": Lat1, "Lon1": Lon1, "Lon2": Lon2 }).done( // Mandamos los parámwetros..
           // Función que se ejecuta cuando obtenemos la respuesta del web service...
           function (result) {
             // Leemos el goejson que creamos y lo agregamos al mapa...
-            L.geoJson.ajax("newfile.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } })
+            L.geoJson.ajax("http://192.168.1.49/newfile.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } })
             //.addTo(map);
             // Mostramos en la consola la respuesta...
             console.log(result);

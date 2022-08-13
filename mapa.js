@@ -94,7 +94,7 @@ function addComponents () { //este formatea primero el mapa
                         '<input type="checkbox" aria-label="Checkbox for following text input" id="element' + index + '">' +
                       '</div>' +
                     '</div>' +
-                    '<div style="display: flex; width: 100%; background-color: #FFFFFF; padding: 10px; border: 1px solid #ced4da;">' +
+                    '<div style="display: flex; justify-content: space-between; width: 100%; background-color: #FFFFFF; padding: 10px; border: 1px solid #ced4da;">' +
                       '<span style="margin-right: 10px;">' +
                         capMap[index]['name'].toUpperCase()  +
                         "<small class='d-block text-muted'>" + capMap[index]['type'] + "</small>" +
@@ -291,25 +291,48 @@ function drawItemSelect(option) { //para saber de que lista viene
 
   var selected = combo.options[combo.selectedIndex].text;
 
+  if (selected == 'Choose...') {
+    return;
+  }
+
   if (checkCap(selected) == true) {//si en la lista ya existe
     return; //ya seleccionada no se vuelve a selccionar
   }
 
   function onEachFeature(feature, layer) { //esto hace e ppopout de los marcadores
     console.log(feature)
-    if (feature.properties.amenity) {
+    if (option === 0) {
       var lat = feature.geometry.coordinates[1];
       var lng = feature.geometry.coordinates[0];
       var akey = "a270636c43724c4c8b0c8c55c0b2a130";
-      var popupContent = "<p>" + feature.properties.amenity + "</p>"+"<p>" + feature.properties.name + "</p>"+"<p>" +'<iframe src="https://www.google.com/maps/embed/v1/streetview?key='+akey+'&location='+lat+','+lng+'&heading=210&pitch=10&fov=35" style="width:100%;border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' + feature.geometry.coordinates + "</p>";
+      var popupContent = "<p>" + feature.properties.amenity.toUpperCase() + "</p>";
+      if (feature.properties.name) {
+        popupContent += "<p>" + feature.properties.name + "</p>";
+      }
+      if (false) {
+        popupContent += "<p>" + '<iframe src="https://www.google.com/maps/embed/v1/streetview?key='+akey+'&location='+lat+','+lng+'&heading=210&pitch=10&fov=35" style="width:100%;border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' + "</p>";
+      }
+      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
       layer.bindPopup(popupContent);
     }
 
-    if (feature.properties.highway) {
-      var popupContent = "<p>" + feature.properties.highway + "</p>"+"<p>" + feature.geometry.coordinates + "</p>";
+    if (option === 1) {
+      var popupContent = "<p>" + feature.properties.highway.toUpperCase() + "</p>";
+      if (feature.properties.name) {
+        popupContent += "<p>" + feature.properties.name + "</p>";
+      }
+      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
       layer.bindPopup(popupContent);
     }
 
+    if (option === 2) {
+      var popupContent = "<p>" + feature.properties.highway.toUpperCase();
+      if (feature.properties.name) {
+        popupContent += "<p>" + feature.properties.name + "</p>";
+      }
+      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
+      layer.bindPopup(popupContent);
+    }
  }
 
  
@@ -323,157 +346,163 @@ function drawItemSelect(option) { //para saber de que lista viene
   // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
   console.log(selected)
   console.log(option)
-  $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
-    { "unidad": selected, "search": option }).done( // Mandamos los parámwetros..
-      // Función que se ejecuta cuando obtenemos la respuesta del web service...
-      function (result) {
+  try {
+    $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
+      { "unidad": selected, "search": option }).done( // Mandamos los parámwetros..
+        // Función que se ejecuta cuando obtenemos la respuesta del web service...
+        function (result) {
 
-      //   var geojsonMarkerOptions = {
-      //     // radius: 8,
-      //     fillColor: "#ff7800",
-      //     color: "#000",
-      //     weight: 1,
-      //     opacity: 1,
-      //     fillOpacity: 0.8
-      // };
+        //   var geojsonMarkerOptions = {
+        //     // radius: 8,
+        //     fillColor: "#ff7800",
+        //     color: "#000",
+        //     weight: 1,
+        //     opacity: 1,
+        //     fillOpacity: 0.8
+        // };
 
-      // var geoJsonPoint = new L.marker({
-      //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-      //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      //   iconSize: [25, 41],
-      //   iconAnchor: [12, 41],
-      //   popupAnchor: [1, -34],
-      //   shadowSize: [41, 41]
-      // });
-      // var greenIcon = new L.Icon({
-      //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-      //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      //   iconSize: [25, 41],
-      //   iconAnchor: [12, 41],
-      //   popupAnchor: [1, -34],
-      //   shadowSize: [41, 41]
-      // });
+        // var geoJsonPoint = new L.marker({
+        //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        //   iconSize: [25, 41],
+        //   iconAnchor: [12, 41],
+        //   popupAnchor: [1, -34],
+        //   shadowSize: [41, 41]
+        // });
+        // var greenIcon = new L.Icon({
+        //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        //   iconSize: [25, 41],
+        //   iconAnchor: [12, 41],
+        //   popupAnchor: [1, -34],
+        //   shadowSize: [41, 41]
+        // });
 
-        // Test de modal: //IMPORTANTE
-        //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
-        var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
-          var blueIcon = new L.Icon({
-            iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-          });
-          return L.marker(latlng, {icon: blueIcon});
-          //latin, ledamos icon  y el icono
-          }, onEachFeature: onEachFeature });
-          //propiedad del primer popup
+          // Test de modal: //IMPORTANTE
+          //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
+          var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
+            var blueIcon = new L.Icon({
+              iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
+              shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+              iconSize: [25, 41],
+              iconAnchor: [12, 41],
+              popupAnchor: [1, -34],
+              shadowSize: [41, 41]
+            });
+            return L.marker(latlng, {icon: blueIcon});
+            //latin, ledamos icon  y el icono
+            }, onEachFeature: onEachFeature });
+            //propiedad del primer popup
 
-        // Creating objet for push:
-        //creamos la variable global
-        var strutureCap =  null;
-        var colorIcon = generateRandomCodeIcon()
-        var colorWay = generateRandomCode()
+          // Creating objet for push:
+          //creamos la variable global
+          var strutureCap =  null;
+          var colorIcon = generateRandomCodeIcon()
+          var colorWay = generateRandomCode()
 
-        if (option == 0) {//se pierden de la memoria de los valores
-          strutureCap = {
-            name: selected,
-            type: 'Amenity',
-            data: geo,
-            color: colorIcon,
-            enable: false,
-            colorGUI: "#" + colorIcon
-          };
-        }
-
-        if (option == 1) {
-          strutureCap = {
-            name: selected,
-            type: 'Highway',
-            data: geo,
-            color: colorIcon,
-            enable: false,
-            colorGUI: "#" + colorIcon
-          };
-        }
-
-        if (option == 2) {
-          strutureCap = {
-            name: selected,
-            type: 'Way',
-            data: geo,
-            color: colorWay,
-            enable: false,
-            colorGUI: colorWay
-          };
-        }
-
-        console.log(capMap);
-        console.log(strutureCap);
-
-        capMap.push(strutureCap);
-        updateComponentes(); //actualizamos todos los componentes
-
-      
-        // Leemos el goejson que creamos y lo agregamos al mapa...
-        // L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } }).addTo(map);
-        //L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } })
-        //aqui se agregan las CAPAAAS
-        // Mostramos en la consola la respuesta...
-        console.log(result);
-        dos = result;
-        var tres = JSON.parse(dos);
-        console.log(tres);
-        var data = [];
-        var data2 = [];
-        for (let i in tres) {
-          if (tres[i] != null) {
-            data.push(tres[i])
+          if (option == 0) {//se pierden de la memoria de los valores
+            strutureCap = {
+              name: selected,
+              type: 'Amenity',
+              data: geo,
+              color: colorIcon,
+              enable: false,
+              colorGUI: "#" + colorIcon
+            };
           }
-        }
-        console.log(data);
-     
-        // var combo = document.getElementById("menubox2");
-        // var selected = combo.options[combo.selectedIndex].text;
-        // // Agregamos la layer con el cuadrito al mapa (pa que se va)...
-        // // Vamos a a consumir nuestrro web service entonces mostramos letrero de cargando...
-        // $('body').loadingModal("show");
-        // // FIXME: cuando dibujas un cuadrado dejando presionado el boton del mouse se hace un cagadero...
-        // var dos2 = null;
-        // var menu2 = document.getElementById("menubox2");
-        // // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
-        // $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
-        //   { "unidad": selected }).done( // Mandamos los parámwetros..
-        //     // Función que se ejecuta cuando obtenemos la respuesta del web service...
-        //     function (result) {
-        //       // Leemos el goejson que creamos y lo agregamos al mapa...
-        //       L.geoJson.ajax("newfile2.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } }).addTo(map);
-        //       // Mostramos en la consola la respuesta...
-        //       console.log(result);
-        //       dos2 = result;
-        //       var tres2 = JSON.parse(dos2);
-        //       console.log(tres);
-        //       var data = [];
-        //       var data2 = [];
-        //       for (let i in tres2) {
-        //         if (tres2[i] != null) {
-        //           data.push(tres2[i])
-        //         }
-        //       }
-        //       console.log(data);
+
+          if (option == 1) {
+            strutureCap = {
+              name: selected,
+              type: 'Highway',
+              data: geo,
+              color: colorIcon,
+              enable: false,
+              colorGUI: "#" + colorIcon
+            };
+          }
+
+          if (option == 2) {
+            strutureCap = {
+              name: selected,
+              type: 'Way',
+              data: geo,
+              color: colorWay,
+              enable: false,
+              colorGUI: colorWay
+            };
+          }
+
+          console.log(capMap);
+          console.log(strutureCap);
+
+          capMap.push(strutureCap);
+          updateComponentes(); //actualizamos todos los componentes
+
         
+          // Leemos el goejson que creamos y lo agregamos al mapa...
+          // L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } }).addTo(map);
+          //L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } })
+          //aqui se agregan las CAPAAAS
+          // Mostramos en la consola la respuesta...
+          console.log(result);
+          dos = result;
+          var tres = JSON.parse(dos);
+          console.log(tres);
+          var data = [];
+          var data2 = [];
+          for (let i in tres) {
+            if (tres[i] != null) {
+              data.push(tres[i])
+            }
+          }
+          console.log(data);
+      
+          // var combo = document.getElementById("menubox2");
+          // var selected = combo.options[combo.selectedIndex].text;
+          // // Agregamos la layer con el cuadrito al mapa (pa que se va)...
+          // // Vamos a a consumir nuestrro web service entonces mostramos letrero de cargando...
+          // $('body').loadingModal("show");
+          // // FIXME: cuando dibujas un cuadrado dejando presionado el boton del mouse se hace un cagadero...
+          // var dos2 = null;
+          // var menu2 = document.getElementById("menubox2");
+          // // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
+          // $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
+          //   { "unidad": selected }).done( // Mandamos los parámwetros..
+          //     // Función que se ejecuta cuando obtenemos la respuesta del web service...
+          //     function (result) {
+          //       // Leemos el goejson que creamos y lo agregamos al mapa...
+          //       L.geoJson.ajax("newfile2.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } }).addTo(map);
+          //       // Mostramos en la consola la respuesta...
+          //       console.log(result);
+          //       dos2 = result;
+          //       var tres2 = JSON.parse(dos2);
+          //       console.log(tres);
+          //       var data = [];
+          //       var data2 = [];
+          //       for (let i in tres2) {
+          //         if (tres2[i] != null) {
+          //           data.push(tres2[i])
+          //         }
+          //       }
+          //       console.log(data);
+          
 
 
-        // Agregamos al url al text input que SI es un text input...
-        $("#urlTxt").val(data[0]);
+          // Agregamos al url al text input que SI es un text input...
+          $("#urlTxt").val(data[0]);
 
-        // Agregamos al url al text input que SI es un text input...
-        // $("#urlTxt").val(result);
-        // Si recibimos la respuesta quitamos el letrero de cargando...
-        $('body').loadingModal('hide');
-      }
-    );
+          // Agregamos al url al text input que SI es un text input...
+          // $("#urlTxt").val(result);
+          // Si recibimos la respuesta quitamos el letrero de cargando...
+          $('body').loadingModal('hide');
+        }
+      );
+  }
+
+  catch (error) {
+    $('body').loadingModal('hide');
+  }
 }
 
 // Funcion generadora de letras hexadecimales
@@ -503,96 +532,102 @@ function generateRandomCodeIcon() {
 
 // Tomamos latitudes y longitudes de los cuadros hechos y llamamos al web service con los parámetros...
 map.on('draw:created', function (e) {
- removeOptions();
+  try {
+    removeOptions();
 
- // Reseteamos el mapa y datos. cuado hacemos otro cuadrito
- resetMap(); //reseamos el mapa
- capMap = [];//para el arreglo nuevo
- updateComponentes();//para el popup
- 
-  // Agregamos la layer con el cuadrito al mapa (pa que se va)...
-  editableLayers.addLayer(e.layer);
-  // Tomamos latitudes y longitudes...
-  var Lat1 = e.layer.getBounds().getNorth();
-  var Lat2 = e.layer.getBounds().getSouth();
-  var Lon1 = e.layer.getBounds().getWest();
-  var Lon2 = e.layer.getBounds().getEast();
+    // Reseteamos el mapa y datos. cuado hacemos otro cuadrito
+    resetMap(); //reseamos el mapa
+    capMap = [];//para el arreglo nuevo
+    updateComponentes();//para el popup
+    
+      // Agregamos la layer con el cuadrito al mapa (pa que se va)...
+      editableLayers.addLayer(e.layer);
+      // Tomamos latitudes y longitudes...
+      var Lat1 = e.layer.getBounds().getNorth();
+      var Lat2 = e.layer.getBounds().getSouth();
+      var Lon1 = e.layer.getBounds().getWest();
+      var Lon2 = e.layer.getBounds().getEast();
 
-  // Vamos a a consumir nuestrro web service entonces mostramos letrero de cargando...
-  $('body').loadingModal("show");
+      // Vamos a a consumir nuestrro web service entonces mostramos letrero de cargando...
+      $('body').loadingModal("show");
 
 
 
-  //CONSULTA TOOODAS LAS AMENIDADES
-  
-  // FIXME: cuando dibujas un cuadrado dejando presionado el boton del mouse se hace un cagadero...
-  var dos = null;
-  var menu = document.getElementById("menubox");
-  var menu2 = document.getElementById("menubox2");
-  var menu3 = document.getElementById("menubox3");
-  // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
-  $.post("http://localhost//0.1.php", // Cual es la url de nuestro web service
-    { "Lat1": Lat2, "Lat2": Lat1, "Lon1": Lon1, "Lon2": Lon2 }).done( // Mandamos los parámwetros..
-      // Función que se ejecuta cuando obtenemos la respuesta del web service...
-      function (result) {
-        // Leemos el goejson que creamos y lo agregamos al mapa...
-        L.geoJson.ajax("newfile.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } })
-        //.addTo(map);
-        // Mostramos en la consola la respuesta...
-        console.log(result);
-        dos = result;
-        var tres = JSON.parse(dos);
-        console.log(tres);
-        var data = [];
-        var data2 = [];
+      //CONSULTA TOOODAS LAS AMENIDADES
+      
+      // FIXME: cuando dibujas un cuadrado dejando presionado el boton del mouse se hace un cagadero...
+      var dos = null;
+      var menu = document.getElementById("menubox");
+      var menu2 = document.getElementById("menubox2");
+      var menu3 = document.getElementById("menubox3");
+      // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
+      $.post("http://localhost//0.1.php", // Cual es la url de nuestro web service
+        { "Lat1": Lat2, "Lat2": Lat1, "Lon1": Lon1, "Lon2": Lon2 }).done( // Mandamos los parámwetros..
+          // Función que se ejecuta cuando obtenemos la respuesta del web service...
+          function (result) {
+            // Leemos el goejson que creamos y lo agregamos al mapa...
+            L.geoJson.ajax("newfile.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } })
+            //.addTo(map);
+            // Mostramos en la consola la respuesta...
+            console.log(result);
+            dos = result;
+            var tres = JSON.parse(dos);
+            console.log(tres);
+            var data = [];
+            var data2 = [];
 
-        for (let i in tres) {
-          if (tres[i] != null) {
-            data.push(tres[i])
+            for (let i in tres) {
+              if (tres[i] != null) {
+                data.push(tres[i])
+              }
+            }
+
+            console.log(data);
+            console.log(data[0][0]);
+            console.log(data[1][0]);
+            console.log(data[2][0]);
+
+            for (let i = 0; i < data.length-1; i++) {
+              for (let j = 0; j < data[i].length; j++) {
+                let option = document.createElement("option");
+                option.setAttribute("value", "value");
+                let optionTexto = document.createTextNode(data[i][j]);
+                option.appendChild(optionTexto);
+
+                if (i == 0) {
+                  menu.appendChild(option);
+                }
+                
+                if (i == 1) {
+                  menu2.appendChild(option);
+                }
+                if (i == 2) {
+                  menu3.appendChild(option);
+                }
+
+              }
+            }
+
+            // Agregamos al url al text input que SI es un text input...
+            $("#urlTxt").val(data[3]);
+            // Si recibimos la respuesta quitamos el letrero de cargando...
+            $('body').loadingModal('hide');
           }
-        }
+        );
 
-        console.log(data);
-        console.log(data[0][0]);
-        console.log(data[1][0]);
-        console.log(data[2][0]);
+      console.log(dos);
 
-        for (let i = 0; i < data.length-1; i++) {
-          for (let j = 0; j < data[i].length; j++) {
-            let option = document.createElement("option");
-            option.setAttribute("value", "value");
-            let optionTexto = document.createTextNode(data[i][j]);
-            option.appendChild(optionTexto);
+      // Agrega el zoon automático en el mapa
+      map.fitBounds([
+        [Lat1, Lon1],
+        [Lat2, Lon2]
+      ]);
 
-            if (i == 0) {
-              menu.appendChild(option);
-            }
-            
-            if (i == 1) {
-              menu2.appendChild(option);
-            }
-            if (i == 2) {
-              menu3.appendChild(option);
-            }
+    }
 
-          }
-        }
-
-        // Agregamos al url al text input que SI es un text input...
-        $("#urlTxt").val(data[3]);
-        // Si recibimos la respuesta quitamos el letrero de cargando...
-        $('body').loadingModal('hide');
-      }
-    );
-
-  console.log(dos);
-
-  // Agrega el zoon automático en el mapa
-  map.fitBounds([
-    [Lat1, Lon1],
-    [Lat2, Lon2]
-  ]);
-
+    catch (error) {
+      $('body').loadingModal('hide');
+    }
 });
 
 
@@ -616,46 +651,6 @@ function removeOptions() {
   }
 
 } // using the function: removeOptions(document.getElementById('DropList')
-
-
-var activities = document.getElementById("menubox");
-
-activities.addEventListener("click", function() {
-    var options = activities.options.length;
-   console.log(options);
-    if(options < 2)
-    {
-      console.log("entre en if");
-
-      drawItemSelect(0);
-    }
-});
-
-var activities2 = document.getElementById("menubox2");
-
-activities2.addEventListener("click", function() {
-    var options = activities2.options.length;
-   console.log(options);
-    if(options < 2)
-    {
-      console.log("entre en if");
-
-      drawItemSelect(1);
-    }
-});
-
-var activities3 = document.getElementById("menubox3");
-
-activities3.addEventListener("click", function() {
-    var options = activities3.options.length;
-   console.log(options);
-    if(options < 2)
-    {
-      console.log("entre en if");
-
-      drawItemSelect(2);
-    }
-});
 
 
 //neuvoooooooooo

@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
+
 require "geo.php";
 
 $lat1= '';
@@ -83,40 +85,9 @@ $html3 = curl_exec($ch3);
 
 $variablej = json_decode($html);
 
-// echo $variablej->elements; 
-
-// echo "enconde 1\n";
-// echo json_encode($variablej->elements); 
-$encode = $variablej->elements;
-
 $variablej2 = json_decode($html2);
 
-// echo $variablej2->elements; 
-// // echo "enconde 2\n";
-// echo json_encode($variablej2->elements); 
-
-$encode2 = $variablej2->elements;
-
 $variablej3 = json_decode($html3);
-
-// echo $variablej2->elements; 
-// // echo "enconde 2\n";
-// echo json_encode($variablej2->elements); 
-
-$encode3 = $variablej3->elements;
-// foreach ($allData as $data) {  // en all data tenemos features
-//    $props = $data->properties;  //vamos a propies -lo de las capas de isaac
-//    if (!empty($props->amenity)) { //dentro la propiedad se hace la consulta si no es vacio
-//      $ameniti=$props->amenity; //si no esta vacio entramos a ameniti
-//      array_push($amenitis, $ameniti); //con array push se agrega al array dinamico
-//    }
-//    //$props = $data->geometry; //para las coordenada
-//    $props = $data->properties;
-//    if (!empty($props->highway)) {
-//      $ameniti=$props->highway;
-//      array_push($variable2, $ameniti);
-//      }
-//  }
 
 $geojson = null;
 $seleccion = $_POST["search"];

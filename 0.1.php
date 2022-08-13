@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
+
 require "geo.php";
 
 // verificar que estan los paametros...
@@ -35,12 +37,7 @@ curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch2, CURLOPT_URL, $overpass2);
 $html2 = curl_exec($ch2);
 
-// echo $html;
-if( strpos($overpass, "(way[")===false){
-   $geojson = Overpass2Geojson::convertNodes($html,false); // Returns array with GeoJSON structure
-}else{
-   $geojson = Overpass2Geojson::convertWays($html,false); // Returns array with GeoJSON structure
-}
+$geojson = Overpass2Geojson::convertNodes($html,false); // Returns array with GeoJSON structure
 $geojson2 = Overpass2Geojson::convertWays($html2,false);
 
 $myfile = fopen("newfile.json", "w") or die("Unable to open file!");

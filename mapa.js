@@ -456,6 +456,7 @@ function drawItemSelect(option) { //para saber de que lista viene
 
           catch (error) {
             console.log(error)
+            $('body').loadingModal('hide');
             return
           }
 
@@ -591,6 +592,7 @@ map.on('draw:created', function (e) {
 
             catch (error) {
               console.log(error)
+              $('body').loadingModal('hide');
               return
             }
 

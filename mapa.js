@@ -11,6 +11,32 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' //mapa  url extraida
 }).addTo(map);
 
+// //prueba de eventos de localizacion
+var customIcon = new L.Icon({
+  // iconUrl: 'https://image.flaticon.com/icons/svg/854/854866.svg',
+  iconUrl: 'https://idegeo.centrogeo.org.mx/uploaded/content_handler/CentroGeo-CMX_Logo-V.png',
+  
+  iconSize: [50, 50],
+  iconAnchor: [25, 50]
+});
+
+map.locate({enableHighAccuracy:true});
+map.on('locationfound',e => {
+  const coords= [e.latlng.lat , e.latlng.lng];
+  const marker = L.marker (coords,{icon: customIcon} );
+ marker.bindPopup('Ubicacion del usuario');
+ map.addLayer(marker);
+
+  console.log(e)
+  });
+
+// const marker = L.marker ().bindPopup('Estas aqui');
+
+// map.addLayer(marker);
+// map.on('locationfound',(e)=> console.log('found',e));
+// map.on('locationerror',(e)=> console.log('eror',e));
+// map.locate();
+
 // Arreglo dinamico por capas:
 var capMap = [];
 
@@ -29,7 +55,7 @@ var drawPluginOptions = {
   draw: {
     polyline: false,
     polygon: false,
-    circle: false, // Turns off this drawing tool
+    circle: true, // Turns off this drawing tool
     rectangle: {
       shapeOptions: {
         clickable: false

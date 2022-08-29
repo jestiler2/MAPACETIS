@@ -2,6 +2,10 @@
 
 
 
+var marcador = null
+var circle = null
+var ubicacion = null
+var getMap = null
 
 // Creamos el mapa y lo centramos... 
 let map = L.map('map').setView([23.466302332191862, -102.1152141635831], 5) //nos permite ver el mapa
@@ -14,21 +18,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // //prueba de eventos de localizacion
 var customIcon = new L.Icon({
   // iconUrl: 'https://image.flaticon.com/icons/svg/854/854866.svg',
-  iconUrl: 'https://idegeo.centrogeo.org.mx/uploaded/content_handler/CentroGeo-CMX_Logo-V.png',
+  // iconUrl: 'https://idegeo.centrogeo.org.mx/uploaded/content_handler/CentroGeo-CMX_Logo-V.png',
+  iconUrl: 'icono.png',
   
   iconSize: [50, 50],
   iconAnchor: [25, 50]
 });
-
-map.locate({enableHighAccuracy:true});
-map.on('locationfound',e => {
-  const coords= [e.latlng.lat , e.latlng.lng];
-  const marker = L.marker (coords,{icon: customIcon} );
- marker.bindPopup('Ubicacion del usuario');
- map.addLayer(marker);
-
-  console.log(e)
-  });
 
 // const marker = L.marker ().bindPopup('Estas aqui');
 
@@ -55,7 +50,7 @@ var drawPluginOptions = {
   draw: {
     polyline: false,
     polygon: false,
-    circle: true, // Turns off this drawing tool
+    circle: false, // Turns off this drawing tool
     rectangle: {
       shapeOptions: {
         clickable: false
@@ -70,6 +65,7 @@ var drawPluginOptions = {
 var drawControl = new L.Control.Draw(drawPluginOptions);
 // 3.- lo agrego al mapa...
 map.addControl(drawControl);
+
 // 4.- Creo una capa en donde se pueda ver el cuadrito de selección...
 var editableLayers = new L.FeatureGroup();
 // 5.- Agrego al mapa la capa creada pa ver el cuadrito...
@@ -77,18 +73,27 @@ map.addLayer(editableLayers);
 // Borramos cualquier otro cuadro que haya c uando iniciamos un dibujo...
 map.on('draw:drawstart', function (e) {
   editableLayers.clearLayers();
+
+  if (marcador != null) {
+    marcador.removeFrom(map);
+  }
+
+  if (circle != null) {
+    circle.removeFrom(map);
+  }
+
+  if (getMap != null) {
+    getMap.removeFrom(map);
+  }
+
+  removeOptions();
+
+  resetMap(); //reseamos el mapa
+  capMap = [];//para el arreglo nuevo
+  updateComponentes();//para el popup
+  document.getElementById("zoom-home-boton_2").style.display = "none"
 }
 );
-function style(feature) {
-  return {
-      weight: .5,
-      opacity: 1,
-      color: 'white',
-      dashArray: '3',
-      fillOpacity: 0.7
-     
-  };
-}
 
 //este es la inversa del acto , el requisito es que las capas esten guardadas
 function resetMap () {
@@ -104,6 +109,29 @@ function resetMap () {
     //     });
     console.log("Borrando");
   }
+}
+
+try {
+  var Latitud1 = getParameterByName("lat1")
+  var Latitud2 = getParameterByName("lat2")
+  var Longitud1 = getParameterByName("lon1")
+  var Longitud2 = getParameterByName("lon2")
+
+  if (Latitud1 && Latitud2 && Longitud1 && Longitud2) {
+    console.log("Hay datos")
+
+    // define rectangle geographical bounds
+  var bounds = [[parseFloat(Latitud1), parseFloat(Longitud1)], [parseFloat(Latitud2), parseFloat(Longitud2)]];
+
+  // create an orange rectangle
+  getMap = L.rectangle(bounds, {color: "#3388FF", weight: 2})
+  getMap.addTo(map);
+  map.fitBounds(bounds); 
+  }
+}
+
+catch (error) {
+  console.log(error)
 }
 
 function addComponents () { //este formatea primero el mapa
@@ -131,7 +159,9 @@ function addComponents () { //este formatea primero el mapa
                 '</div>';
     e.innerHTML = structure; 
     document.getElementById("internsData").appendChild(e);
-    capMap[index]['data'].addTo(map);//agregamos al mapa
+    if (capMap[index]['enable'] == true) {
+      capMap[index]['data'].addTo(map);//agregamos al mapa
+    }
   }
 
   for (let index = 0; index < capMap.length; index++) {
@@ -150,6 +180,262 @@ function updateComponentes () {
 //eliminamos para que quede en blanco y llamamos update
   // Update componentes:
   addComponents()
+}
+
+function compartir_ubicacion () {
+  fetch('http://localhost//datos.txt').then(res => res.text()).then(content => {
+    var url_compartir = "http://localhost/mapa.html?"
+    let lines = content.split(/\n/);
+    let index = 0
+    lines.forEach(line => {
+      if (index == 0) {
+        url_compartir += "lat1=" + line;
+        console.log(line + " " + index);
+        console.log(url_compartir)
+      }
+      if (index == 1) {
+        url_compartir += "&lat2=" + line;
+        console.log(line + " " + index);
+        console.log(url_compartir)
+      }
+      if (index == 2) {
+        url_compartir += "&lon1=" + line;
+        console.log(line + " " + index);
+        console.log(url_compartir)
+      }
+      if (index == 3) {
+        url_compartir += "&lon2=" + line;
+        console.log(line + " " + index);
+        console.log(url_compartir)
+      }
+      index ++;
+    })
+    var template = '<div class="modal fade" id="compartir" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+                      '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                          '<div class="modal-content">' +
+                              '<div class="modal-header">' +
+                                '<h5 class="modal-title" id="exampleModalLongTitle">Compartir mapa</h5>' +
+                                  '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                                  '<span aria-hidden="true">&times;</span>' +
+                                  '</button>' +
+                              '</div>' +
+                              '<div class="modal-body">' +
+                                'Copie el siguiente enlace para compartir su mapa: <br/><br/>' +
+                                "<input class='form-control' id='compartirURL' type='text' disabled value='" + url_compartir + "'>" +
+                              '</div>' +
+                              '<div class="modal-footer">' +
+                                '<button type="button" class="btn btn-primary"' + " onclick='" + 'javascript:copyCompartir("' + url_compartir +'")' + "'>Copiar</button>" +
+                                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>' +
+                              '</div>' +
+                          '</div>' +
+                      '</div>' +
+                    '</div>';
+      document.getElementById("modal-ubicacion").innerHTML = template
+      $("#compartir").modal('toggle')
+    });
+}
+
+
+
+function copyCompartir(text) {
+  const type = 'text/plain';
+  const blob = new Blob([text], {type});
+  let data = [new ClipboardItem({[type]: blob})];
+
+  navigator.clipboard.write(data).then(function() {
+    console.log('Copiado!')
+  }, function() {
+    console.log('Ups! No se copio');
+  });
+}
+
+function obtener_ubicacion () {
+  var template = '<div class="modal fade" id="ubicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+                    '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                        '<div class="modal-content">' +
+                            '<div class="modal-header">' +
+                               '<h5 class="modal-title" id="exampleModalLongTitle">Obtener ubicación</h5>' +
+                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                                '</button>' +
+                            '</div>' +
+                            '<div class="modal-body">' +
+                              'Seleccione el nivel de radio a explorar: <br/><br/>' +
+                              '<label for="ranger_radio" class="form-label" id="range_data">Rango actual: 500 metros.</label>' +
+                              "<input type='range'  style='width: 100%' class='form-range' min='100' max='1000' value='500' id='ranger_radio' onchange='javascript:updateRange()'>" +
+                            '</div>' +
+                            '<div class="modal-footer">' +
+                              '<button type="button" class="btn btn-primary"' + " onclick='" + 'javascript:ubicarMapa()' + "'>Aceptar</button>'" +
+                              '<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                  '</div>';
+    document.getElementById("modal-ubicacion").innerHTML = template
+    $("#ubicar").modal('toggle')
+}
+
+function ubicarMapa() {
+  $("#ubicar").modal('toggle')
+  $('body').loadingModal("show");
+
+  editableLayers.clearLayers();
+  document.getElementById("zoom-home-boton_2").style.display = "none"
+
+  if (marcador != null) {
+    marcador.removeFrom(map);
+  }
+
+  if (circle != null) {
+    circle.removeFrom(map);
+  }
+
+  if (getMap != null) {
+    getMap.removeFrom(map);
+  }
+
+  resetMap(); //reseamos el mapa
+  capMap = [];//para el arreglo nuevo
+  updateComponentes();//para el popup
+
+  map.locate({enableHighAccuracy:true});
+  map.on('locationfound',e => {
+    ubicacion = e
+    const coords= [e.latlng.lat , e.latlng.lng];
+    marcador = L.marker (coords,{icon: customIcon} );
+    var circleOptions = {
+      color: '#CFB87F',
+      fillColor: '#F5EAD8',
+      fillOpacity: 0.5
+  }
+    rango = document.getElementById("ranger_radio").value
+    console.log(rango)
+    circle = L.circle([e.latlng.lat , e.latlng.lng], Number(rango), circleOptions)
+    circle.addTo(map);
+    marcador.bindPopup('Ubicacion del usuario');
+    map.addLayer(marcador);
+
+    console.log(circle.getBounds())
+
+    // Agrega el zoon automático en el mapa
+    map.fitBounds(circle.getBounds()); 
+
+    console.log(ubicacion)
+
+    // Tomamos latitudes y longitudes...
+    var Lat1 = circle.getBounds()._northEast.lat
+    var Lat2 = circle.getBounds()._southWest.lat
+    var Lon1 = circle.getBounds()._southWest.lng
+    var Lon2 = circle.getBounds()._northEast.lng
+
+    loadMap(Lat1, Lat2, Lon1, Lon2)
+  });
+}
+
+function updateRange () {{}
+  actualizar = document.getElementById("range_data")
+  rango = document.getElementById("ranger_radio").value
+  actualizar.innerHTML = "Rango actual: " + rango + " metros."
+  console.log(rango)
+}
+
+function loadMap (Lat1, Lat2, Lon1, Lon2) {
+  try {
+    // Reseteamos el mapa y datos. cuado hacemos otro cuadrito
+      //CONSULTA TOOODAS LAS AMENIDADES
+      
+      
+      // FIXME: cuando dibujas un cuadrado dejando presionado el boton del mouse se hace un cagadero...
+      var dos = null;
+      // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
+      $.post("http://localhost//0.1.php", // Cual es la url de nuestro web service
+        { "Lat1": Lat2, "Lat2": Lat1, "Lon1": Lon1, "Lon2": Lon2 }).done( // Mandamos los parámwetros..
+          // Función que se ejecuta cuando obtenemos la respuesta del web service...
+          function (result) {
+            // Leemos el goejson que creamos y lo agregamos al mapa...
+            L.geoJson.ajax("newfile.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } })
+            //.addTo(map);
+            // Mostramos en la consola la respuesta...
+            console.log(result);
+            dos = result;
+
+            var tres;
+
+            try {
+              tres = JSON.parse(dos);
+            }
+
+            catch (error) {
+              console.log(error)
+              $('body').loadingModal('hide');
+              return
+            }
+
+            console.log(tres);
+            var data = [];
+            var data2 = [];
+
+            for (let i in tres) {
+              if (tres[i] != null) {
+                data.push(tres[i])
+              }
+            }
+
+            console.log(data);
+            console.log(data[0][0]);
+            console.log(data[1][0]);
+            console.log(data[2][0]);
+
+            removeOptions();
+
+            var menu = document.getElementById("menubox");
+            var menu2 = document.getElementById("menubox2");
+            var menu3 = document.getElementById("menubox3");
+
+            for (let i = 0; i < data.length-1; i++) {
+              for (let j = 0; j < data[i].length; j++) {
+                let option = document.createElement("option");
+                option.setAttribute("value", "value");
+                let optionTexto = document.createTextNode(data[i][j]);
+                option.appendChild(optionTexto);
+
+                if (i == 0) {
+                  menu.appendChild(option);
+                }
+                
+                if (i == 1) {
+                  menu2.appendChild(option);
+                }
+                if (i == 2) {
+                  menu3.appendChild(option);
+                }
+
+              }
+            }
+
+            // Agregamos al url al text input que SI es un text input...
+            $("#urlTxt").val(data[3]);
+            // Si recibimos la respuesta quitamos el letrero de cargando...
+            $('body').loadingModal('hide');
+            document.getElementById("zoom-home-boton_2").style.display = "block"
+          }
+        );
+
+      console.log(dos);
+      console.log("Analize")
+    }
+
+    catch (error) {
+      console.log(error)
+      $('body').loadingModal('hide');
+    }
+}
+
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function deleteGUI (index) {
@@ -192,108 +478,12 @@ function checkCap (select) { //nos permite verificar
   return false; //impide diplicaciones
 }
 
-function resetIcon () {//lo que nos hace creamos el icono azul 
-  // Reset color:
-  var blueIcon = new L.Icon({
-    iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-//en el arreglo dinamico hacemos un foreach para reinicializar todo en azul
-for (let index = 0; index < capMap.length; index++) {
-
-  capMap[index]['data'].eachLayer(function (layer) {  
-    if(layer.feature.properties.amenity == capMap[index]['name']) {    
-      layer.setIcon(blueIcon) 
-    }
-
-    if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Highway") {    
-      layer.setIcon(blueIcon) 
-    }
-
-    if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Way") {    
-      layer.setStyle({color :'2A81CB'})
-      console.log("Cambiando a azul el Way")
-    }
-  });
-
-  console.log("Recoloreando");
-}
-}
 //requiere item y capa
 function seeCapSelect (cap, id) { //cap es la posicion
   //la capa es la posicion de la capa
 
   capMap[id]['enable'] = !capMap[id]['enable']
 
-  // Reset color:
-  var blueIcon = new L.Icon({
-    iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-
-  //este primer foor resetea en azzul
-  for (let index = 0; index < capMap.length; index++) {
-
-    capMap[index]['data'].eachLayer(function (layer) {  
-      if(layer.feature.properties.amenity == capMap[index]['name']) {    
-        layer.setIcon(blueIcon) 
-      }
-
-      if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Highway") {    
-        layer.setIcon(blueIcon) 
-      }
-
-      if(layer.feature.properties.highway == capMap[index]['name'] && capMap[index]['type'] == "Way") {    
-        layer.setStyle({color : '#2A81CB'})
-        console.log("Cambiando a azul el Way")
-      }
-    });
-
-    console.log("Recoloreando");
-  }
-
-  // una vez reseteado ejecutamos para encontrar el nombre que sea igual
-  for (let index = 0; index < capMap.length; index++) {
-    console.log(capMap[index]['data']);
-    console.log(capMap[index]);
-
-    var greenIcon = new L.Icon({
-      iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + capMap[index]['color'] + '&chf=a,s,ee00FFFF',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
-    });
-
-    capMap[index]['data'].eachLayer(function (layer) {  
-      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Amenity") {    
-        layer.setIcon(greenIcon) 
-        console.log("ameniti");
-      }
-
-      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Highway") {    
-        layer.setIcon(greenIcon) 
-        console.log("soy hihgway");
-      }
-
-      if(capMap[index]['enable'] == true && capMap[index]['type'] == "Way") {
-        layer.setStyle({color : capMap[index]['color']})
-        console.log("soy Way");
-        console.log("Cambiando a rojo el Way")
-      }
-    });
-
-    console.log("Recoloreando el seleccionado");
-  }
 //tenemos que eliminar y agregar
   resetMap();
   updateComponentes(); //resetea y reagrega
@@ -378,53 +568,44 @@ function drawItemSelect(option) { //para saber de que lista viene
         // Función que se ejecuta cuando obtenemos la respuesta del web service...
         function (result) {
 
-        //   var geojsonMarkerOptions = {
-        //     // radius: 8,
-        //     fillColor: "#ff7800",
-        //     color: "#000",
-        //     weight: 1,
-        //     opacity: 1,
-        //     fillOpacity: 0.8
-        // };
-
-        // var geoJsonPoint = new L.marker({
-        //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        //   iconSize: [25, 41],
-        //   iconAnchor: [12, 41],
-        //   popupAnchor: [1, -34],
-        //   shadowSize: [41, 41]
-        // });
-        // var greenIcon = new L.Icon({
-        //   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        //   iconSize: [25, 41],
-        //   iconAnchor: [12, 41],
-        //   popupAnchor: [1, -34],
-        //   shadowSize: [41, 41]
-        // });
-
-          // Test de modal: //IMPORTANTE
-          //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
-          var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
-            var blueIcon = new L.Icon({
-              iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + '2A81CB' + '&chf=a,s,ee00FFFF',
-              shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-              popupAnchor: [1, -34],
-              shadowSize: [41, 41]
-            });
-            return L.marker(latlng, {icon: blueIcon});
-            //latin, ledamos icon  y el icono
-            }, onEachFeature: onEachFeature });
-            //propiedad del primer popup
-
           // Creating objet for push:
           //creamos la variable global
           var strutureCap =  null;
           var colorIcon = generateRandomCodeIcon()
           var colorWay = generateRandomCode()
+
+          // Test de modal: //IMPORTANTE
+          //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
+          var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
+
+            if (option == 0) {//se pierden de la memoria de los valores
+              var greenIcon = new L.Icon({
+                iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + colorIcon + '&chf=a,s,ee00FFFF',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+              });
+              return L.marker(latlng, {icon: greenIcon});
+            }
+  
+            if (option == 1) {
+              var greenIcon = new L.Icon({
+                iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + colorIcon + '&chf=a,s,ee00FFFF',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+              });
+              return L.marker(latlng, {icon: greenIcon});
+            }
+            //latin, ledamos icon  y el icono
+            }, onEachFeature: onEachFeature, style: function (geoJsonFeature) {
+              return {color: colorWay}
+            }});
+            //propiedad del primer popup
 
           if (option == 0) {//se pierden de la memoria de los valores
             strutureCap = {
@@ -432,7 +613,7 @@ function drawItemSelect(option) { //para saber de que lista viene
               type: 'Amenity',
               data: geo,
               color: colorIcon,
-              enable: false,
+              enable: true,
               colorGUI: "#" + colorIcon
             };
           }
@@ -443,7 +624,7 @@ function drawItemSelect(option) { //para saber de que lista viene
               type: 'Highway',
               data: geo,
               color: colorIcon,
-              enable: false,
+              enable: true,
               colorGUI: "#" + colorIcon
             };
           }
@@ -454,7 +635,7 @@ function drawItemSelect(option) { //para saber de que lista viene
               type: 'Way',
               data: geo,
               color: colorWay,
-              enable: false,
+              enable: true,
               colorGUI: colorWay
             };
           }
@@ -534,6 +715,7 @@ function drawItemSelect(option) { //para saber de que lista viene
           // $("#urlTxt").val(result);
           // Si recibimos la respuesta quitamos el letrero de cargando...
           $('body').loadingModal('hide');
+          document.getElementById("zoom-home-boton_2").style.display = "block"
         }
       );
   }
@@ -570,7 +752,7 @@ function generateRandomCodeIcon() {
 
 // Tomamos latitudes y longitudes de los cuadros hechos y llamamos al web service con los parámetros...
 map.on('draw:created', function (e) {
-  try {
+  try {    
     removeOptions();
 
     // Reseteamos el mapa y datos. cuado hacemos otro cuadrito
@@ -662,6 +844,7 @@ map.on('draw:created', function (e) {
             $("#urlTxt").val(data[3]);
             // Si recibimos la respuesta quitamos el letrero de cargando...
             $('body').loadingModal('hide');
+            document.getElementById("zoom-home-boton_2").style.display = "block"
           }
         );
 
@@ -688,15 +871,15 @@ function removeOptions() {
   var j3 = document.getElementById("menubox3");
   // alert("mensaje");
   // var i, L = selectElement.options.length - 1;
-  for (i = j.options.length; i >= 2; i--) {
+  for (i = j.options.length; i >= 1; i--) {
     j.remove(i);
   }
 
-  for (i = j2.options.length; i >= 2; i--) {
+  for (i = j2.options.length; i >= 1; i--) {
     j2.remove(i);
   }
 
-  for (i = j3.options.length; i >= 2; i--) {
+  for (i = j3.options.length; i >= 1; i--) {
     j3.remove(i);
   }
 

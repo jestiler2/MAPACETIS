@@ -25,6 +25,7 @@ var marcador = null
 var circle = null
 var ubicacion = null
 var getMap = null
+let ubicaciones = null
 
 // Creamos el mapa y lo centramos... 
 let map = L.map('map').setView([23.466302332191862, -102.1152141635831], 5) //nos permite ver el mapa
@@ -132,26 +133,330 @@ function resetMap () {
 }
 
 try {
-  var Latitud1 = getParameterByName("lat1")
-  var Latitud2 = getParameterByName("lat2")
-  var Longitud1 = getParameterByName("lon1")
-  var Longitud2 = getParameterByName("lon2")
+  var user_share_ID = getParameterByName("share")
 
-  if (Latitud1 && Latitud2 && Longitud1 && Longitud2) {
+  if (user_share_ID) {
     console.log("Hay datos")
 
-    // define rectangle geographical bounds
-  var bounds = [[parseFloat(Latitud1), parseFloat(Longitud1)], [parseFloat(Latitud2), parseFloat(Longitud2)]];
+    try {
+      $.post("http://localhost//connection.php",
+        {"mode": 1, "id": user_share_ID}).done( // Mandamos los parámwetros..
+          // Función que se ejecuta cuando obtenemos la respuesta del web service...
+          function (result) {
+            console.log(result)
+            dos = result;
+            var tres;
 
-  // create an orange rectangle
-  getMap = L.rectangle(bounds, {color: "#3388FF", weight: 2})
-  getMap.addTo(map);
-  map.fitBounds(bounds); 
+            try {
+              tres = JSON.parse(dos);
+            }
+
+            catch (error) {
+              console.log(error)
+              $('body').loadingModal('hide');
+              return
+            }
+
+            console.log(tres);
+
+            let data = []
+
+            for (let i in tres) {
+              if (tres[i] != null) {
+                data.push(tres[i])
+              }
+            }
+
+            console.log(data)
+
+            ubicaciones = []
+            ubicaciones.push(parseFloat(data[0][0]))
+            ubicaciones.push(parseFloat(data[2][0]))
+            ubicaciones.push(parseFloat(data[1][0]))
+            ubicaciones.push(parseFloat(data[3][0]))
+
+            loadMap(data[0][0], data[2][0], data[1][0], data[3][0], false)
+
+            // define rectangle geographical bounds
+            var bounds = [[parseFloat(data[0][0]), parseFloat(data[1][0])], [parseFloat(data[2][0]), parseFloat(data[3][0])]];
+
+            // create an orange rectangle
+            getMap = L.rectangle(bounds, {color: "#3388FF", weight: 2})
+            getMap.addTo(map);
+            map.fitBounds(bounds);
+            console.log(bounds)
+
+            for (let i = 0; i < data[4].length; i ++) {
+              option = -1;
+              if (data[5][i] == 'Amenity') {
+                option = 0
+              }
+              if (data[5][i] == 'Highway') {
+                option = 1
+              }
+              if (data[5][i] == 'Way') {
+                option = 2
+              }
+              console.log("graficando")
+              drawItemSelectShare(option, data[4][i], Boolean(data[6][i]), data[7][i], data[8][i], (i + 1) == data[4].length)
+            }
+            
+          }
+        );
+    }
+  
+    catch (error) {
+      console.log("Error fatal: " + error)
+    }
   }
 }
 
 catch (error) {
   console.log(error)
+}
+
+//requiere item y capa
+function seeCapSelect (cap, id) { //cap es la posicion
+  //la capa es la posicion de la capa
+
+  capMap[id]['enable'] = !capMap[id]['enable']
+
+  try {
+    $.post("http://localhost//connection.php",
+      { "mode": 3, "id": userID, "lat1": ubicaciones[0], "log1": ubicaciones[2], "lat2": ubicaciones[1], "log2": ubicaciones[3], "name": capMap[id].name, "type": capMap[id].type, "enable": Number(capMap[id].enable), "color": capMap[id].color, "colorGUI": capMap[id].colorGUI, "data": null}).done( // Mandamos los parámwetros..
+        // Función que se ejecuta cuando obtenemos la respuesta del web service...
+        function (result) {
+          console.log(result)
+        }
+      );
+  }
+
+  catch (error) {
+    console.log("Error fatal: " + error)
+  }
+
+//tenemos que eliminar y agregar
+  resetMap();
+  updateComponentes(); //resetea y reagrega
+}
+
+ function drawItemSelectShare(option, selected, enableData, colorData, colorGUIData, finShare) { //para saber de que lista viene 
+  console.log("holaaaa")
+  function onEachFeature(feature, layer) { //esto hace e ppopout de los marcadores
+    console.log(feature)
+    if (option === 0) {
+      var lat = feature.geometry.coordinates[1];
+      var lng = feature.geometry.coordinates[0];
+      var akey = "a270636c43724c4c8b0c8c55c0b2a130";
+      var popupContent = "<p>" + feature.properties.amenity.toUpperCase() + "</p>";
+      if (feature.properties.name) {
+        popupContent += "<p>" + feature.properties.name + "</p>";
+      }
+      if (false) {
+        popupContent += "<p>" + '<iframe src="https://www.google.com/maps/embed/v1/streetview?key='+akey+'&location='+lat+','+lng+'&heading=210&pitch=10&fov=35" style="width:100%;border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' + "</p>";
+      }
+      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
+      layer.bindPopup(popupContent);
+    }
+
+    if (option === 1) {
+      var popupContent = "<p>" + feature.properties.highway.toUpperCase() + "</p>";
+      if (feature.properties.name) {
+        popupContent += "<p>" + feature.properties.name + "</p>";
+      }
+      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
+      layer.bindPopup(popupContent);
+    }
+
+    if (option === 2) {
+      var popupContent = "<p>" + feature.properties.highway.toUpperCase();
+      if (feature.properties.name) {
+        popupContent += "<p>" + feature.properties.name + "</p>";
+      }
+      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
+      layer.bindPopup(popupContent);
+    }
+ }
+
+  try {
+    $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
+      { "unidad": selected, "search": option }).done( // Mandamos los parámwetros..
+        // Función que se ejecuta cuando obtenemos la respuesta del web service...
+        function (result) {
+
+          // Creating objet for push:
+          //creamos la variable global
+          var strutureCap =  null;
+          var colorIcon = colorData
+          var colorWay = colorGUIData
+
+          // Test de modal: //IMPORTANTE
+          //aqui damos el color azul podemos cambiar cambia el icono ,podria poner otro
+          var geo = L.geoJson.ajax("newfile2.json", { pointToLayer: function(feature, latlng) {
+
+            if (option == 0) {//se pierden de la memoria de los valores
+              var greenIcon = new L.Icon({
+                iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + colorIcon + '&chf=a,s,ee00FFFF',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+              });
+              return L.marker(latlng, {icon: greenIcon});
+            }
+  
+            if (option == 1) {
+              var greenIcon = new L.Icon({
+                iconUrl: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + colorIcon + '&chf=a,s,ee00FFFF',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+              });
+              return L.marker(latlng, {icon: greenIcon});
+            }
+            //latin, ledamos icon  y el icono
+            }, onEachFeature: onEachFeature, style: function (geoJsonFeature) {
+              return {color: colorWay}
+            }});
+            //propiedad del primer popup
+
+          if (option == 0) {//se pierden de la memoria de los valores
+            strutureCap = {
+              name: selected,
+              type: 'Amenity',
+              data: geo,
+              color: colorIcon,
+              enable: enableData,
+              colorGUI: "#" + colorIcon
+            };
+          }
+
+          if (option == 1) {
+            strutureCap = {
+              name: selected,
+              type: 'Highway',
+              data: geo,
+              color: colorIcon,
+              enable: enableData,
+              colorGUI: "#" + colorIcon
+            };
+          }
+
+          if (option == 2) {
+            strutureCap = {
+              name: selected,
+              type: 'Way',
+              data: geo,
+              color: colorWay,
+              enable: enableData,
+              colorGUI: colorWay
+            };
+          }
+
+          console.log(capMap);
+          console.log(strutureCap);
+
+          capMap.push(strutureCap);
+          updateComponentes(); //actualizamos todos los componentes
+
+        
+          // Leemos el goejson que creamos y lo agregamos al mapa...
+          // L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } }).addTo(map);
+          //L.geoJson.ajax("newfile2.json", {function(geoJsonPoint, latlng) {return L.marker(latlng,{icon: greenIcon} ); } })
+          //aqui se agregan las CAPAAAS
+          // Mostramos en la consola la respuesta...
+          console.log(result);
+          dos = result;
+          
+          var tres;
+
+          try {
+            tres = JSON.parse(dos);
+          }
+
+          catch (error) {
+            console.log(error)
+            $('body').loadingModal('hide');
+            return
+          }
+
+          console.log(tres);
+          var data = [];
+          var data2 = [];
+          for (let i in tres) {
+            if (tres[i] != null) {
+              data.push(tres[i])
+            }
+          }
+          console.log(data);
+
+          try {
+            $.post("http://localhost//connection.php",
+              { "mode": 3, "id": userID, "lat1": ubicaciones[0], "log1": ubicaciones[2], "lat2": ubicaciones[1], "log2": ubicaciones[3], "name": strutureCap.name, "type": strutureCap.type, "enable": Number(strutureCap.enable), "color": strutureCap.color, "colorGUI": strutureCap.colorGUI, "data": null}).done( // Mandamos los parámwetros..
+                // Función que se ejecuta cuando obtenemos la respuesta del web service...
+                function (result) {
+                  console.log(result)
+                }
+              );
+          }
+        
+          catch (error) {
+            console.log("Error fatal: " + error)
+          }
+      
+          // var combo = document.getElementById("menubox2");
+          // var selected = combo.options[combo.selectedIndex].text;
+          // // Agregamos la layer con el cuadrito al mapa (pa que se va)...
+          // // Vamos a a consumir nuestrro web service entonces mostramos letrero de cargando...
+          // $('body').loadingModal("show");
+          // // FIXME: cuando dibujas un cuadrado dejando presionado el boton del mouse se hace un cagadero...
+          // var dos2 = null;
+          // var menu2 = document.getElementById("menubox2");
+          // // Mandamos a llamar wl web service por post (que es lo mismo que ajax)
+          // $.post("http://localhost//cerounoC.php", // Cual es la url de nuestro web service
+          //   { "unidad": selected }).done( // Mandamos los parámwetros..
+          //     // Función que se ejecuta cuando obtenemos la respuesta del web service...
+          //     function (result) {
+          //       // Leemos el goejson que creamos y lo agregamos al mapa...
+          //       L.geoJson.ajax("newfile2.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } }).addTo(map);
+          //       // Mostramos en la consola la respuesta...
+          //       console.log(result);
+          //       dos2 = result;
+          //       var tres2 = JSON.parse(dos2);
+          //       console.log(tres);
+          //       var data = [];
+          //       var data2 = [];
+          //       for (let i in tres2) {
+          //         if (tres2[i] != null) {
+          //           data.push(tres2[i])
+          //         }
+          //       }
+          //       console.log(data);
+          
+
+
+          // Agregamos al url al text input que SI es un text input...
+          $("#urlTxt").val(data[0]);
+
+          // Agregamos al url al text input que SI es un text input...
+          // $("#urlTxt").val(result);
+          // Si recibimos la respuesta quitamos el letrero de cargando...
+          
+          document.getElementById("zoom-home-boton_2").style.display = "block"
+
+          if (finShare) {
+            $('body').loadingModal('hide');
+          }
+        }
+      );
+  }
+
+  catch (error) {
+     $('body').loadingModal('hide');
+  }
 }
 
 function addComponents () { //este formatea primero el mapa
@@ -204,32 +509,7 @@ function updateComponentes () {
 
 function compartir_ubicacion () {
   fetch('http://localhost//datos.txt').then(res => res.text()).then(content => {
-    var url_compartir = "http://localhost/mapa.html?"
-    let lines = content.split(/\n/);
-    let index = 0
-    lines.forEach(line => {
-      if (index == 0) {
-        url_compartir += "lat1=" + line;
-        console.log(line + " " + index);
-        console.log(url_compartir)
-      }
-      if (index == 1) {
-        url_compartir += "&lat2=" + line;
-        console.log(line + " " + index);
-        console.log(url_compartir)
-      }
-      if (index == 2) {
-        url_compartir += "&lon1=" + line;
-        console.log(line + " " + index);
-        console.log(url_compartir)
-      }
-      if (index == 3) {
-        url_compartir += "&lon2=" + line;
-        console.log(line + " " + index);
-        console.log(url_compartir)
-      }
-      index ++;
-    })
+    var url_compartir = "http://localhost/mapa.html?share=" + userID;
     var template = '<div class="modal fade" id="compartir" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
                       '<div class="modal-dialog modal-dialog-centered" role="document">' +
                           '<div class="modal-content">' +
@@ -320,6 +600,23 @@ function ubicarMapa() {
 
   map.locate({enableHighAccuracy:true});
   map.on('locationfound',e => {
+
+    if (ubicaciones != null && ubicaciones != []) {
+      try {
+        $.post("http://localhost//connection.php",
+          {"mode": 4, "id": userID, "lat1": ubicaciones[0], "log1": ubicaciones[2], "lat2": ubicaciones[1], "log2": ubicaciones[3]}).done( // Mandamos los parámwetros..
+            // Función que se ejecuta cuando obtenemos la respuesta del web service...
+            function (result) {
+              console.log(result)
+            }
+          );
+      }
+    
+      catch (error) {
+        console.log("Error fatal: " + error)
+      }
+    }
+
     ubicacion = e
     const coords= [e.latlng.lat , e.latlng.lng];
     marcador = L.marker (coords,{icon: customIcon} );
@@ -347,8 +644,14 @@ function ubicarMapa() {
     var Lat2 = circle.getBounds()._southWest.lat
     var Lon1 = circle.getBounds()._southWest.lng
     var Lon2 = circle.getBounds()._northEast.lng
+    
+    ubicaciones = []
+    ubicaciones.push(Lat1)
+    ubicaciones.push(Lat2)
+    ubicaciones.push(Lon1)
+    ubicaciones.push(Lon2)
 
-    loadMap(Lat1, Lat2, Lon1, Lon2)
+    loadMap(Lat1, Lat2, Lon1, Lon2, true)
   });
 }
 
@@ -358,7 +661,7 @@ function updateRange (rango) {
   console.log(rango)
 }
 
-function loadMap (Lat1, Lat2, Lon1, Lon2) {
+function loadMap (Lat1, Lat2, Lon1, Lon2, showLoad) {
   try {
     // Reseteamos el mapa y datos. cuado hacemos otro cuadrito
       //CONSULTA TOOODAS LAS AMENIDADES
@@ -371,6 +674,7 @@ function loadMap (Lat1, Lat2, Lon1, Lon2) {
         { "Lat1": Lat2, "Lat2": Lat1, "Lon1": Lon1, "Lon2": Lon2 }).done( // Mandamos los parámwetros..
           // Función que se ejecuta cuando obtenemos la respuesta del web service...
           function (result) {
+            $('body').loadingModal("show");
             // Leemos el goejson que creamos y lo agregamos al mapa...
             L.geoJson.ajax("newfile.json", { style: function (feature) { return { color: "#FF0000", weight: 5.0, opacity: 1.0 }; } })
             //.addTo(map);
@@ -435,7 +739,9 @@ function loadMap (Lat1, Lat2, Lon1, Lon2) {
             // Agregamos al url al text input que SI es un text input...
             $("#urlTxt").val(data[3]);
             // Si recibimos la respuesta quitamos el letrero de cargando...
-            $('body').loadingModal('hide');
+            if (showLoad) {
+              $('body').loadingModal('hide');
+            }
             document.getElementById("zoom-home-boton_2").style.display = "block"
           }
         );
@@ -503,12 +809,26 @@ function seeCapSelect (cap, id) { //cap es la posicion
 
   capMap[id]['enable'] = !capMap[id]['enable']
 
+  try {
+    $.post("http://localhost//connection.php",
+      { "mode": 3, "id": userID, "lat1": ubicaciones[0], "log1": ubicaciones[2], "lat2": ubicaciones[1], "log2": ubicaciones[3], "name": capMap[id].name, "type": capMap[id].type, "enable": Number(capMap[id].enable), "color": capMap[id].color, "colorGUI": capMap[id].colorGUI, "data": null}).done( // Mandamos los parámwetros..
+        // Función que se ejecuta cuando obtenemos la respuesta del web service...
+        function (result) {
+          console.log(result)
+        }
+      );
+  }
+
+  catch (error) {
+    console.log("Error fatal: " + error)
+  }
+
 //tenemos que eliminar y agregar
   resetMap();
   updateComponentes(); //resetea y reagrega
 }
 
-function drawItemSelect(option) { //para saber de que lista viene 
+ function drawItemSelect(option) { //para saber de que lista viene 
 
   var combo = null;
   
@@ -695,6 +1015,20 @@ function drawItemSelect(option) { //para saber de que lista viene
             }
           }
           console.log(data);
+
+          try {
+            $.post("http://localhost//connection.php",
+              { "mode": 3, "id": userID, "lat1": ubicaciones[0], "log1": ubicaciones[2], "lat2": ubicaciones[1], "log2": ubicaciones[3], "name": strutureCap.name, "type": strutureCap.type, "enable": Number(strutureCap.enable), "color": strutureCap.color, "colorGUI": strutureCap.colorGUI, "data": null}).done( // Mandamos los parámwetros..
+                // Función que se ejecuta cuando obtenemos la respuesta del web service...
+                function (result) {
+                  console.log(result)
+                }
+              );
+          }
+        
+          catch (error) {
+            console.log("Error fatal: " + error)
+          }
       
           // var combo = document.getElementById("menubox2");
           // var selected = combo.options[combo.selectedIndex].text;
@@ -772,6 +1106,23 @@ function generateRandomCodeIcon() {
 // Tomamos latitudes y longitudes de los cuadros hechos y llamamos al web service con los parámetros...
 map.on('draw:created', function (e) {
   try {    
+
+    if (ubicaciones != null && ubicaciones != []) {
+      try {
+        $.post("http://localhost//connection.php",
+          {"mode": 4, "id": userID, "lat1": ubicaciones[0], "log1": ubicaciones[2], "lat2": ubicaciones[1], "log2": ubicaciones[3]}).done( // Mandamos los parámwetros..
+            // Función que se ejecuta cuando obtenemos la respuesta del web service...
+            function (result) {
+              console.log(result)
+            }
+          );
+      }
+    
+      catch (error) {
+        console.log("Error fatal: " + error)
+      }
+    }
+
     removeOptions();
 
     // Reseteamos el mapa y datos. cuado hacemos otro cuadrito
@@ -786,6 +1137,12 @@ map.on('draw:created', function (e) {
       var Lat2 = e.layer.getBounds().getSouth();
       var Lon1 = e.layer.getBounds().getWest();
       var Lon2 = e.layer.getBounds().getEast();
+
+      ubicaciones = []
+      ubicaciones.push(Lat1)
+      ubicaciones.push(Lat2)
+      ubicaciones.push(Lon1)
+      ubicaciones.push(Lon2)
 
       // Vamos a a consumir nuestrro web service entonces mostramos letrero de cargando...
       $('body').loadingModal("show");

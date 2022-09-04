@@ -1,6 +1,25 @@
 // Agregamos funcionalidad del modal
 
+onload="startIdentifier()"
+let userID = ""
 
+function startIdentifier () {
+  const id = "Identifier"
+  const exdays = "1"
+  if (checkCookie(id)) {
+    const user = getCookie(id)
+    console.log("Existe: " + user)
+    userID = user
+  } else {
+    setUserClientId()
+    const user = getUserClientId()
+    setCookie(id, user, exdays)
+    console.log("Nuevo: " + user)
+    userID = user
+  }
+}
+
+startIdentifier();
 
 var marcador = null
 var circle = null
@@ -72,6 +91,7 @@ var editableLayers = new L.FeatureGroup();
 map.addLayer(editableLayers);
 // Borramos cualquier otro cuadro que haya c uando iniciamos un dibujo...
 map.on('draw:drawstart', function (e) {
+  console.log("IDENTIFICADOR: " + userID)
   editableLayers.clearLayers();
 
   if (marcador != null) {
@@ -262,7 +282,7 @@ function obtener_ubicacion () {
                             '<div class="modal-body">' +
                               'Seleccione el nivel de radio a explorar: <br/><br/>' +
                               '<label for="ranger_radio" class="form-label" id="range_data">Rango actual: 500 metros.</label>' +
-                              "<input type='range'  style='width: 100%' class='form-range' min='100' max='1000' value='500' id='ranger_radio' onchange='javascript:updateRange()'>" +
+                              "<input type='range'  style='width: 100%' class='form-range' min='100' max='1000' value='500' id='ranger_radio' oninput='javascript:updateRange(this.value)'>" +
                             '</div>' +
                             '<div class="modal-footer">' +
                               '<button type="button" class="btn btn-primary"' + " onclick='" + 'javascript:ubicarMapa()' + "'>Aceptar</button>'" +
@@ -332,9 +352,8 @@ function ubicarMapa() {
   });
 }
 
-function updateRange () {{}
+function updateRange (rango) {
   actualizar = document.getElementById("range_data")
-  rango = document.getElementById("ranger_radio").value
   actualizar.innerHTML = "Rango actual: " + rango + " metros."
   console.log(rango)
 }

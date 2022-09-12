@@ -1,1 +1,1 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-89.6195044,20.9777495],[-89.6194874,20.9779049]]},"properties":{"highway":"path","id":236526501}}]}
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"amenity":"townhall","name":"Palacio municipal de Tekit"},"geometry":{"type":"Point","coordinates":[-89.3335489,20.5335464]}}]}

@@ -21,10 +21,10 @@ function startIdentifier () {
 
 startIdentifier();
 
-var marcador = null
-var circle = null
-var ubicacion = null
-var getMap = null
+let marcador = null
+let circle = null
+let ubicacion = null
+let getMap = null
 let ubicaciones = null
 
 // Creamos el mapa y lo centramos... 
@@ -95,16 +95,31 @@ map.on('draw:drawstart', function (e) {
   console.log("IDENTIFICADOR: " + userID)
   editableLayers.clearLayers();
 
-  if (marcador != null) {
-    marcador.removeFrom(map);
+  try {
+    if (marcador) {
+      marcador.removeFrom(map);
+      marcador = null
+    }
+  } catch (error) {
+
   }
 
-  if (circle != null) {
-    circle.removeFrom(map);
+  try {
+    if (circle) {
+      circle.removeFrom(map);
+      circle = null
+    }
+  } catch (error) {
+
   }
 
-  if (getMap != null) {
-    getMap.removeFrom(map);
+  try {
+    if (getMap) {
+      getMap.removeFrom(map);
+      getMap = null
+    }
+  } catch (error) {
+
   }
 
   removeOptions();
@@ -130,6 +145,77 @@ function resetMap () {
     //     });
     console.log("Borrando");
   }
+}
+
+function clear_map () {
+  var template = '<div class="modal fade" id="clear_mapa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+                    '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                        '<div class="modal-content">' +
+                            '<div class="modal-header">' +
+                              '<h5 class="modal-title" id="exampleModalLongTitle">Reiniciar mapa</h5>' +
+                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                                '</button>' +
+                            '</div>' +
+                            '<div class="modal-body">' +
+                              '¿Desea reiniciar solamente los marcadores o todo el mapa?' +
+                            '</div>' +
+                            '<div class="modal-footer">' +
+                              '<button type="button" class="btn btn-primary"' + " onclick='" + 'javascript:reset_map(1)' + "'>Solo marcadores</button>" +
+                              '<button type="button" class="btn btn-secondary"' + " onclick='" + 'javascript:reset_map(2)' + "'>Todo el mapa</button>" +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                  '</div>';
+    document.getElementById("modal-ubicacion").innerHTML = template
+    $("#clear_mapa").modal('toggle')
+}
+
+function reset_map(mode) {
+  for (let index = 0; index < capMap.length; index++) {
+    capMap[index]['data'].removeFrom(map);
+    console.log("Borrando");
+  }
+  document.getElementById("internsData").innerHTML = "";
+  capMap = []
+
+  if (mode == 1) {
+    document.getElementById("zoom-home-boton_2").style.display = "none"
+  }
+  
+  if (mode == 2) {
+    try {
+      if (marcador) {
+        marcador.removeFrom(map);
+        marcador = null
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  
+    try {
+      if (circle) {
+        circle.removeFrom(map);
+        circle = null
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  
+    try {
+      if (getMap) {
+        getMap.removeFrom(map);
+        getMap = null
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+    editableLayers.clearLayers();
+    removeOptions()
+  }
+
+  $("#clear_mapa").modal('toggle')
 }
 
 try {
@@ -582,16 +668,31 @@ function ubicarMapa() {
   editableLayers.clearLayers();
   document.getElementById("zoom-home-boton_2").style.display = "none"
 
-  if (marcador != null) {
-    marcador.removeFrom(map);
+  try {
+    if (marcador) {
+      marcador.removeFrom(map);
+      marcador = null
+    }
+  } catch (error) {
+
   }
 
-  if (circle != null) {
-    circle.removeFrom(map);
+  try {
+    if (circle) {
+      circle.removeFrom(map);
+      circle = null
+    }
+  } catch (error) {
+
   }
 
-  if (getMap != null) {
-    getMap.removeFrom(map);
+  try {
+    if (getMap) {
+      getMap.removeFrom(map);
+      getMap = null
+    }
+  } catch (error) {
+
   }
 
   resetMap(); //reseamos el mapa
@@ -599,7 +700,7 @@ function ubicarMapa() {
   updateComponentes();//para el popup
 
   map.locate({enableHighAccuracy:true});
-  map.on('locationfound',e => {
+  map.once('locationfound',e => {
 
     if (ubicaciones != null && ubicaciones != []) {
       try {
@@ -618,7 +719,7 @@ function ubicarMapa() {
     }
 
     ubicacion = e
-    const coords= [e.latlng.lat , e.latlng.lng];
+    let coords= [e.latlng.lat , e.latlng.lng];
     marcador = L.marker (coords,{icon: customIcon} );
     var circleOptions = {
       color: '#CFB87F',
@@ -628,8 +729,11 @@ function ubicarMapa() {
     rango = document.getElementById("ranger_radio").value
     console.log(rango)
     circle = L.circle([e.latlng.lat , e.latlng.lng], Number(rango), circleOptions)
+
     circle.addTo(map);
+
     marcador.bindPopup('Ubicacion del usuario');
+
     map.addLayer(marcador);
 
     console.log(circle.getBounds())
@@ -856,18 +960,15 @@ function seeCapSelect (cap, id) { //cap es la posicion
 
   function onEachFeature(feature, layer) { //esto hace e ppopout de los marcadores
     console.log(feature)
+    var lat = feature.geometry.coordinates[1];
+    var lng = feature.geometry.coordinates[0];
     if (option === 0) {
-      var lat = feature.geometry.coordinates[1];
-      var lng = feature.geometry.coordinates[0];
-      var akey = "a270636c43724c4c8b0c8c55c0b2a130";
       var popupContent = "<p>" + feature.properties.amenity.toUpperCase() + "</p>";
       if (feature.properties.name) {
         popupContent += "<p>" + feature.properties.name + "</p>";
       }
-      if (false) {
-        popupContent += "<p>" + '<iframe src="https://www.google.com/maps/embed/v1/streetview?key='+akey+'&location='+lat+','+lng+'&heading=210&pitch=10&fov=35" style="width:100%;border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' + "</p>";
-      }
-      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
+      popupContent += "<a href='https://www.google.com/maps/search/?api=1&query=" + lat + "%2C" + lng + "' target='_blank' style='padding: 8px;background-color: green;color: white;border-radius: 8px;text-decoration: none;'>Google maps</a><br\><br\>";
+      // popupContent += "<p>" + feature.geometry.coordinates + "</p>";
       layer.bindPopup(popupContent);
     }
 
@@ -876,20 +977,23 @@ function seeCapSelect (cap, id) { //cap es la posicion
       if (feature.properties.name) {
         popupContent += "<p>" + feature.properties.name + "</p>";
       }
-      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
+      popupContent += "<a href='https://www.google.com/maps/search/?api=1&query=" + lat + "%2C" + lng + "' target='_blank' style='padding: 8px;background-color: green;color: white;border-radius: 8px;text-decoration: none;'>Google maps</a><br\><br\>";
+      // popupContent += "<p>" + feature.geometry.coordinates + "</p>";
       layer.bindPopup(popupContent);
     }
 
     if (option === 2) {
       var popupContent = "<p>" + feature.properties.highway.toUpperCase();
       if (feature.properties.name) {
-        popupContent += "<p>" + feature.properties.name + "</p>";
+        popupContent += "<p>" + feature.properties.name + "</p><br\><br\>";
       }
-      popupContent += "<p>" + feature.geometry.coordinates + "</p>";
+      // popupContent += "<a href='https://www.google.com/maps/search/?api=1&query=" + lat[0] + "%2C" + lat[1] + "' target='_blank' style='padding: 8px;background-color: green;color: white;border-radius: 8px;text-decoration: none;'>Google maps</a><br\><br\>";
+      // popupContent += "<p>" + feature.geometry.coordinates + "</p>";
       layer.bindPopup(popupContent);
     }
  }
 
+  console.log(map.getZoom())
  
 
   // Agregamos la layer con el cuadrito al mapa (pa que se va)...
